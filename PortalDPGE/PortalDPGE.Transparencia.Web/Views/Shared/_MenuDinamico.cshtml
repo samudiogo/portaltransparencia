@@ -1,0 +1,51 @@
+﻿<div class="hidden-sm hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <a class="navbar-brand" href="#"><img src="~/Content/img/brand.png" /></a>
+            </div>
+            <div class="col-md-4 pull-right search">
+                @if (!(Request.Browser.IsMobileDevice && Request.HttpMethod == FormMethod.Get.ToString()))
+                {
+                    //using (Html.BeginRouteForm("busca-geral-portal", FormMethod.Get, new { id = "form-search-geral", role = "search" }))
+                    {
+                        <fieldset class="search-query">
+                            <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
+                        </fieldset>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="~/Content/img/brand-mobile.png" class="visible-sm visible-xs" /></a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-mobile collapse navbar-collapse">
+            @if (Request.Browser.IsMobileDevice && Request.HttpMethod == "GET")
+            {
+                <div class="col-xs-12 hidden-print hidden-sm hidden-lg" style="margin-top: 10px; margin-bottom: 10px;">
+                    @using (Html.BeginRouteForm("busca-geral-portal", FormMethod.Get, new { id = "form-search-geral", role = "search" }))
+                    {
+                        <fieldset class="search-query">
+                            <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
+                        </fieldset>
+                    }
+                </div>
+            }
+
+            <ul class="nav navbar-nav">
+                <li><a href="#">Inicio</a></li>
+                @*@Html.MontaMenu(Model.Opcoes)*@
+            </ul>
+        </div>
+    </div>
+</nav>
