@@ -7,23 +7,43 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.transparencia.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script src="https://use.fontawesome.com/5628438f36.js"></script>
+    @RenderSection("head", false)
 </head>
 <body>
+    <div class="mb-4">
 @RenderPage("_acessibilidade.cshtml")
-
+    </div>
+    
 @RenderPage("_MenuDinamico.cshtml")
-
+    
 <div class="container body-content">
     @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-left text-white">
+                <p>
+                    Defensoria Pública do Estado do Rio de Janeiro<br/>
+                    Atendimento ao Cidadão: 129<br/>
+                    (21) 2332-6224 (sede)<br/>
+                    Av. Marechal Câmara, 314 - CEP 20020-080 - Centro, RJ
+                </p>
+            </div>
+            <div class="col-md-6 text-right redes-sociais">
+                <p class="text-white mb-0">
+                    Acompanhe a Defensoria:
+                    <i class="fa fa-2x fa-facebook-square text-success"></i> <i class="fa fa-2x fa-flickr text-success"></i>
+                    <i class="fa fa-2x fa-youtube-square text-success"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
+@RenderSection("scripts", false)
 </body>
 </html>

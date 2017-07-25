@@ -1,18 +1,19 @@
 ﻿<div class="hidden-sm hidden-xs">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
-                <a class="navbar-brand" href="#"><img src="~/Content/img/brand.png" /></a>
+            <div class="col-md-8">
+                <a class="" href="#">
+                    <div style="background-color: goldenrod; width:622px; height: 58px;" class=""></div>
+                </a>
             </div>
-            <div class="col-md-4 pull-right search">
+            <div class="col-md-4" style="background-color: rebeccapurple">
                 @if (!(Request.Browser.IsMobileDevice && Request.HttpMethod == FormMethod.Get.ToString()))
                 {
-                    //using (Html.BeginRouteForm("busca-geral-portal", FormMethod.Get, new { id = "form-search-geral", role = "search" }))
-                    {
-                        <fieldset class="search-query">
+                    <div class="row">
+                        <div class="col-md-12">
                             <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
-                        </fieldset>
-                    }
+                        </div>
+                    </div>
                 }
             </div>
         </div>
@@ -33,12 +34,12 @@
             @if (Request.Browser.IsMobileDevice && Request.HttpMethod == "GET")
             {
                 <div class="col-xs-12 hidden-print hidden-sm hidden-lg" style="margin-top: 10px; margin-bottom: 10px;">
-                    @using (Html.BeginRouteForm("busca-geral-portal", FormMethod.Get, new { id = "form-search-geral", role = "search" }))
-                    {
-                        <fieldset class="search-query">
-                            <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
-                        </fieldset>
-                    }
+                    @*@using (Html.BeginRouteForm("busca-geral-portal", FormMethod.Get, new { id = "form-search-geral", role = "search" }))*@
+
+                    <fieldset class="search-query">
+                        <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
+                    </fieldset>
+
                 </div>
             }
 
