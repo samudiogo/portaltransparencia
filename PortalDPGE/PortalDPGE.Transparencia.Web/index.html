@@ -1,29 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.transparencia.css" rel="stylesheet" />
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>Portal transparência</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="Content/bootstrap.transparencia.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/modernizr-2.6.2.js"></script>
     <script src="https://use.fontawesome.com/5628438f36.js"></script>
 </head>
+
 <body>
-@RenderPage("_acessibilidade.cshtml")
+    <!-- acessibilidade -->
+    <header class="sticky-top">
+        <nav class="menu-secundario">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 pull-right col-xs-12">
+                        <div class="pull-right">
+                            <span><strong>Acessibilidade</strong></span>
+                            <button class="btn btn-sm btn-outline-primary">A-</button>
+                            <button class="btn btn-sm btn-outline-primary">A+</button>
+                            <button class="btn btn-sm btn-outline-primary"><i class="fa fa-adjust" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- fim acessibilidade -->
+    <!-- logo e busca  -->
+    <div class="hidden-sm hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <a class="" href="#">
+                        <div style="background-color: goldenrod; width:622px; height: 58px;" class=""></div>
+                    </a>
+                </div>
+                <div class="col-md-4" style="background-color: rebeccapurple">
 
-@RenderPage("_MenuDinamico.cshtml")
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
+                        </div>
+                    </div>
 
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim logo e busca  -->
+    <!-- menu  -->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><img src="~/Content/img/brand-mobile.png" class="visible-sm visible-xs" /></a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            </div>
+            <div id="navbar" class="navbar-mobile collapse navbar-collapse">
+
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        <div style="width: 100%; height:600px; background-color: #CCC;"></div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-left text-white">
+                    <p>
+                        Defensoria Pública do Estado do Rio de Janeiro<br/> Atendimento ao Cidadão: 129<br/> (21) 2332-6224 (sede)<br/> Av. Marechal Câmara, 314 - CEP 20020-080 - Centro, RJ
+                    </p>
+                </div>
+                <div class="col-md-6 text-right redes-sociais">
+                    <p class="text-white mb-0">
+                        Acompanhe a Defensoria:
+                        <i class="fa fa-2x fa-facebook-square text-success"></i> <i class="fa fa-2x fa-flickr text-success"></i>
+                        <i class="fa fa-2x fa-youtube-square text-success"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
     </footer>
-</div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
 </body>
+
 </html>
