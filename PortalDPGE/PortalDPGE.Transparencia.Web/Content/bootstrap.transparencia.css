@@ -65,7 +65,9 @@
 /****/
 
 .navbar-inverse {
-    background-color: #045129;
+    background-color: #00793A;
+    border: none;
+    border-radius: 0;
 }
 .btn-outline-primary {
     color: #337ab7;
