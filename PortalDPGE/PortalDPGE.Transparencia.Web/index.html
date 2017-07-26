@@ -8,7 +8,7 @@
     <link href="Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="Content/bootstrap.transparencia.css" rel="stylesheet" />
     <link href="Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="Scripts/modernizr-2.6.2.js"></script>
+    <script src="Scripts/modernizr-2.8.3.js"></script>
     <script src="https://use.fontawesome.com/5628438f36.js"></script>
 </head>
 
@@ -45,7 +45,10 @@
 
                     <div class="row">
                         <div class="col-md-12 search">
+                            <form action="/busca" id="form-search-geral" method="get" role="search">                        <fieldset class="search-query">
                             <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
+                        </fieldset>
+</form>
                         </div>
                     </div>
 
@@ -57,7 +60,7 @@
     <!-- menu  -->
     <nav class="navbar navbar-inverse">
         <div class="container">
-            <div class="navbar-header">
+           <!-- <div class="navbar-header">
                 <a class="navbar-brand" href="#"><img src="~/Content/img/brand-mobile.png" class="visible-sm visible-xs" /></a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -65,10 +68,35 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            </div>
+            </div> -->
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="">Início</a>
+                </li>
+                 <li>
+                    <a href="">Perguntas Frequentes</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transparência <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><span>Execução orçamentária</span></li>
+                        <li>
+                            <a href="">Demonstrativo de arrecadação </a>
+                        </li>
+                        <li>
+                            <span>
+                                <a href="">Lorem Ipsum</a>
+                            </span>
+                            
+                            
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+
             <div id="navbar" class="navbar-mobile collapse navbar-collapse">
-
-
             </div>
         </div>
     </nav>
@@ -92,14 +120,14 @@
                     <p class="text-justify">
                         Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado.
                     </p>
-                    <a class="btn btn-default" href="#">Leia mais</a>
+                    <a class="btn btn-outline-primary text-uppercase" href="#">Leia mais</a>
                     </div>
                     
                 </div>
 
             </div>
 
-            <section class="dados-home">   
+            <section class="dados-home hidden-xs">   
                 <h3 class="section-title text-center">Dados da transparência</h3>
 
                 <article class="dados-item">
@@ -201,17 +229,35 @@
                         Defensoria Pública do Estado do Rio de Janeiro<br/> Atendimento ao Cidadão: 129<br/> (21) 2332-6224 (sede)<br/> Av. Marechal Câmara, 314 - CEP 20020-080 - Centro, RJ
                     </p>
                 </div>
-                <div class="col-md-6 text-right redes-sociais">
+                <div class="visible-xs-inline-block col-xs-12 redes-sociais">
+                        <hr/>
+                        <p class="text-white mb-0 visible-xs-block">
+                        <span>Acompanhe a Defensoria: </span>
+                        <a class="img-circle redes-icon" href="#"> 
+                            <i class="fa fa-1x fa-facebook"></i> 
+                        </a>
+                        <a class="img-circle redes-icon" href="#"> 
+                            <i class="fa fa-1x fa-flickr"></i>
+                        </a>
+                        <a class="img-circle redes-icon" href="#"> 
+                            <i class="fa fa-1x fa-youtube"></i>
+                        </a>                                           
+                        </p>
+                        <div class="clearfix"></div>
+
+                </div>
+                <div class="col-md-6 hidden-xs text-right redes-sociais">
+                    
                     <p class="text-white mb-0">
                         <span>Acompanhe a Defensoria: </span>
                         <a class="img-circle redes-icon" href="#"> 
-                            <i class="fa fa-2x fa-facebook"></i> 
+                            <i class="fa fa-1x fa-facebook"></i> 
                         </a>
                         <a class="img-circle redes-icon" href="#"> 
-                            <i class="fa fa-2x fa-flickr"></i>
+                            <i class="fa fa-1x fa-flickr"></i>
                         </a>
                         <a class="img-circle redes-icon" href="#"> 
-                            <i class="fa fa-2x fa-youtube"></i>
+                            <i class="fa fa-1x fa-youtube"></i>
                         </a>
                                            
                     </p>
@@ -219,7 +265,8 @@
             </div>
         </div>
     </footer>
-    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/jquery.min.js"></script>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 </body>
 

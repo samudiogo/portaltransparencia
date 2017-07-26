@@ -60,7 +60,7 @@ h6 {
 }
 .redes-sociais i {
     border-radius: 100%;
-    padding: 5px 10px;
+    padding: 5px 7px;
     display: inline-block;
     background-color:#6DB123;
 }
@@ -80,6 +80,7 @@ h6 {
 
 .redes-icon { color: #005A2B !important; width: 25px; height: 25px; margin: 5px; text-align: center; font-size: 14px; }
 .redes-sociais span { font-size: 14px;}
+.redes-icon .fa { font-size: 1.45em;}
 
 .section-title {
     text-transform: uppercase;
