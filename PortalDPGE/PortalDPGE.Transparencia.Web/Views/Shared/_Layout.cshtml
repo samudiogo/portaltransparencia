@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Portal transparência</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.transparencia.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
@@ -12,9 +12,9 @@
     @RenderSection("head", false)
 </head>
 <body>
-    <div class="mb-4">
+    
 @RenderPage("_acessibilidade.cshtml")
-    </div>
+    
     
 @RenderPage("_MenuDinamico.cshtml")
     
@@ -26,17 +26,40 @@
         <div class="row align-items-center">
             <div class="col-md-6 text-left text-white">
                 <p>
-                    Defensoria Pública do Estado do Rio de Janeiro<br/>
-                    Atendimento ao Cidadão: 129<br/>
-                    (21) 2332-6224 (sede)<br/>
-                    Av. Marechal Câmara, 314 - CEP 20020-080 - Centro, RJ
+                    Defensoria Pública do Estado do Rio de Janeiro<br/> Atendimento ao Cidadão: 129<br/> (21) 2332-6224 (sede)<br/> Av. Marechal Câmara, 314 - CEP 20020-080 - Centro, RJ
                 </p>
             </div>
-            <div class="col-md-6 text-right redes-sociais">
+            <div class="visible-xs-inline-block col-xs-12 redes-sociais">
+                <hr/>
+                <p class="text-white mb-0 visible-xs-block">
+                    <span>Acompanhe a Defensoria: </span>
+                    <a class="img-circle redes-icon" href="#"> 
+                        <i class="fa fa-1x fa-facebook"></i> 
+                    </a>
+                    <a class="img-circle redes-icon" href="#"> 
+                        <i class="fa fa-1x fa-flickr"></i>
+                    </a>
+                    <a class="img-circle redes-icon" href="#"> 
+                        <i class="fa fa-1x fa-youtube"></i>
+                    </a>                                           
+                </p>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="col-md-6 hidden-xs text-right redes-sociais">
+                    
                 <p class="text-white mb-0">
-                    Acompanhe a Defensoria:
-                    <i class="fa fa-2x fa-facebook-square text-success"></i> <i class="fa fa-2x fa-flickr text-success"></i>
-                    <i class="fa fa-2x fa-youtube-square text-success"></i>
+                    <span>Acompanhe a Defensoria: </span>
+                    <a class="img-circle redes-icon" href="#"> 
+                        <i class="fa fa-1x fa-facebook"></i> 
+                    </a>
+                    <a class="img-circle redes-icon" href="#"> 
+                        <i class="fa fa-1x fa-flickr"></i>
+                    </a>
+                    <a class="img-circle redes-icon" href="#"> 
+                        <i class="fa fa-1x fa-youtube"></i>
+                    </a>
+                                           
                 </p>
             </div>
         </div>
