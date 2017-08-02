@@ -132,5 +132,15 @@
     z-index: 1030;
 }
 
+hr {
+    border-top-color: #4D4D4D;
+}
 
+label {
+    font-size: 18px;
+    line-height: 1.9;
+}
 
+.form-control {
+    border-color: #4D4D4D;
+}
