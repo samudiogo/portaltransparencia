@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<PortalDPGE.Transparencia.Web.Models.ServidorModel>
 @{
     ViewBag.Title = "Gestão de Pessoas";
 }
@@ -22,24 +22,68 @@
 <table class="table table-hover table-bordered table-striped">
     <thead class="thead-green">
         <tr>
-            <th>Matrícula</th>
-            <th>Cargo</th>
-            <th>Função</th>
-            <th>Lotação</th>
-            <th>Nomeação</th>
-            <th>Estável</th>
-            <th>Antiguidade</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Matricula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Funcao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lotacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nomeacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estavel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Antiguidade)
+            </th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Teste</td>
-            <td>Teste</td>
-            <td>Teste</td>
-            <td>Teste</td>
-            <td>Teste</td>
-            <td>Teste</td>
-            <td>Teste</td>
-        </tr>
+    @if (!Model.Any())
+    {
+        <h6>Não há registros disponíveis.</h6>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Matricula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Funcao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lotacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nomeacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estavel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Antiguidade)
+                </td>
+            </tr>
+        }
+    }
     </tbody>
 </table>

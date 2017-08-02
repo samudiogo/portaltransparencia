@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PortalDPGE.Transparencia.Web.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,7 +20,13 @@ namespace PortalDPGE.Transparencia.Web.Controllers
         [Route("quadro-servidores-ativos")]
         public ActionResult ListaQuadroAtivos()
         {
-            return View();
+            var modelList = new List<ServidorModel>();
+            using (var sr = new StreamReader(Server.MapPath("~/Content/MOCK_DATA.json")))
+            {
+                modelList = JsonConvert.DeserializeObject<List<ServidorModel>>(sr.ReadToEnd());
+            }
+
+            return View(modelList);
         }
     }
 }
