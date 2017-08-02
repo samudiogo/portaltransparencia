@@ -144,3 +144,8 @@ label {
 .form-control {
     border-color: #4D4D4D;
 }
+
+.thead-green {
+    color: #00793A;
+    background-color: #E8E8E8;
+}
