@@ -14,39 +14,43 @@
     <div class="col-md-4">
         <select class="form-control">
             <option>Mês/Ano</option>
+            @foreach (var periodo in (IEnumerable<DateTime>) ViewBag.ListaPeriodo)
+            {
+                <option value="@periodo"> @periodo.ToString("MMMM/yyyy") </option>
+            }
         </select>
     </div>
 </div>
-<h3>Exibindo dados referentes à: <span class="text-success">Julho de 2017</span> </h3>
+<h3>Exibindo dados referentes à: <span class="text-success">@ViewBag.Periodo</span> </h3>
 
 <table class="table table-hover table-bordered table-striped">
     <thead class="thead-green">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Matricula)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cargo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Funcao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lotacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nomeacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estavel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Antiguidade)
-            </th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Matricula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cargo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Funcao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lotacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nomeacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estavel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Antiguidade)
+        </th>
+    </tr>
     </thead>
     <tbody>
     @if (!Model.Any())
@@ -87,3 +91,7 @@
     }
     </tbody>
 </table>
+
+<hr />
+<p><em>última atualização: @Model.First().Periodo.ToString("F")</em></p>
+<p><em>Responsável pelos dados: Gestão de Pessoas da DPRJ</em></p>

@@ -7,8 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using PortalDPGE.Dom.Regras.Transparencia;
-using PortalDPGE.Dom.Servico.Transparencia;
+
+using PortalDPGE.Transparencia.Web.Services;
 
 namespace PortalDPGE.Transparencia.Web.Controllers
 {
@@ -16,15 +16,20 @@ namespace PortalDPGE.Transparencia.Web.Controllers
     public class GestaoPessoasController : Controller
     {
 
-        private readonly IServidorRegras _servico;
 
-        public GestaoPessoasController() { }
-        
-        public GestaoPessoasController(IServidorRegras servico)
+        private readonly IGestaoPessoaApiService _service;
+        private readonly string _periodoAtual = DateTime.Today.ToString("MM/yy");
+
+        public GestaoPessoasController()
         {
-            _servico = servico;
+            _service = new GestaoPessoaApiService();
         }
-        
+
+        public GestaoPessoasController(IGestaoPessoaApiService servico)
+        {
+            _service = servico;
+        }
+
 
         // GET: GestaoPessoas
         public ActionResult Index()
@@ -32,17 +37,22 @@ namespace PortalDPGE.Transparencia.Web.Controllers
             return View();
         }
         [Route("quadro-servidores-ativos")]
-        public ActionResult ListaQuadroAtivos()
+        public async Task<ActionResult> ListaQuadroAtivos()
         {
-            var lista = _servico.ListarServidor(s => s.Cargo.Equals("Ativo") && s.Nomeacao.ToString("M/yy") == DateTime.Today.ToString("M/yy"));
 
 
-            List<ServidorModel> modelList;
-            using (var sr = new StreamReader(Server.MapPath("~/Content/MOCK_DATA.json")))
-            {
-                modelList = JsonConvert.DeserializeObject<List<ServidorModel>>(sr.ReadToEnd());
-            }
-
+            ViewBag.ListaPeriodo = await _service.ObterPeriodoQuadroServidorAsync("ativo");
+            
+            //var modelList = new List<ServidorModel>
+            //{
+            //    new ServidorModel
+            //    {
+            //        Nome = "Samuel",
+            //        Periodo = DateTime.Today
+            //    }
+            //};
+            var modelList = await _service.ObterListaServidorPorSituaoPeriodoAsync("ativo","01-08-2017");
+            ViewBag.Periodo = modelList.First().Periodo.ToString("MMMM 'de' yyyy");
             return View(modelList);
         }
 

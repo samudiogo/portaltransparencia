@@ -16,9 +16,12 @@ namespace PortalDPGE.Transparencia.Web.Models
         [Display(Name = "Lotação")]
         public string Lotacao { get; set; }
         [Display(Name = "Nomeação")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yy}", ApplyFormatInEditMode = true)]
         public DateTime Nomeacao { get; set; }
         [Display(Name = "Estável")]
         public string Estavel { get; set; }
         public int Antiguidade { get; set; }
+        public DateTime Periodo { get; set; }
+        public string Situacao { get; set; }
     }
 }
