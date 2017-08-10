@@ -37,23 +37,25 @@ namespace PortalDPGE.Transparencia.Web.Controllers
             return View();
         }
         [Route("quadro-servidores-ativos")]
-        public async Task<ActionResult> ListaQuadroAtivos()
+        public async Task<ActionResult> QuadroCargoAtivos()
         {
 
+            ViewBag.Situacao = "Ativos";
 
             ViewBag.ListaPeriodo = await _service.ObterPeriodoQuadroServidorAsync("ativo");
             
-            //var modelList = new List<ServidorModel>
-            //{
-            //    new ServidorModel
-            //    {
-            //        Nome = "Samuel",
-            //        Periodo = DateTime.Today
-            //    }
-            //};
-            var modelList = await _service.ObterListaServidorPorSituaoPeriodoAsync("ativo","01-08-2017");
+            return View("QuadroCargo");
+        }
+        [Route("partial-ListaQuadroCargosAtivos")]
+        public PartialViewResult ListaQuadroCargosAtivos(DateTime? periodo)
+        {
+            var periodoFiltro = periodo ?? DateTime.Today;
+
+            var modelList = Task.Run(async () => await _service.ObterListaServidorPorSituaoPeriodoAsync("ativo", periodoFiltro)).Result;
+
             ViewBag.Periodo = modelList.First().Periodo.ToString("MMMM 'de' yyyy");
-            return View(modelList);
+
+            return PartialView("_ListaQuadroAtivo", modelList);
         }
 
     }

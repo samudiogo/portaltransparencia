@@ -20,7 +20,7 @@ namespace PortalDPGE.Transparencia.Web.Services
             return await Task.Run(() => GetMockDate());
         }
 
-        public async Task<IEnumerable<ServidorModel>> ObterListaServidorPorSituaoPeriodoAsync(string situacao, string periodo)
+        public async Task<IEnumerable<ServidorModel>> ObterListaServidorPorSituaoPeriodoAsync(string situacao, DateTime periodo)
         {
             using (var webClient = new HttpClient())
             {
@@ -28,7 +28,7 @@ namespace PortalDPGE.Transparencia.Web.Services
                 webClient.DefaultRequestHeaders.Accept.Clear();
                 webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await webClient.GetAsync($"gestaopessoas/quadroscargos/{situacao}/{periodo}");
+                var response = await webClient.GetAsync($"gestaopessoas/quadroscargos/{situacao}/{periodo:'01'-MM-yyyy}");
                 if (response.IsSuccessStatusCode)
                     return JsonConvert.DeserializeObject<IEnumerable<ServidorModel>>(await response.Content
                         .ReadAsStringAsync());

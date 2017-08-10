@@ -148,8 +148,9 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\GestaoPessoas\ListaQuadroAtivos.cshtml" />
+    <Content Include="Views\GestaoPessoas\_ListaQuadroAtivo.cshtml" />
     <Content Include="Views\GestaoPessoas\View.cshtml" />
+    <Content Include="Views\GestaoPessoas\QuadroCargo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

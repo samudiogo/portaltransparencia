@@ -2,25 +2,6 @@
 @{
     ViewBag.Title = "Gestão de Pessoas";
 }
-
-<h1 class="text-success">Gestão de Pessoas</h1>
-<h2>Quadro de cargos - ativos</h2>
-
-<hr />
-
-
-<div class="form-group row">
-    <label class="col-sm-2 control-label">Filtre por data:</label>
-    <div class="col-md-4">
-        <select class="form-control">
-            <option>Mês/Ano</option>
-            @foreach (var periodo in (IEnumerable<DateTime>) ViewBag.ListaPeriodo)
-            {
-                <option value="@periodo"> @periodo.ToString("MMMM/yyyy") </option>
-            }
-        </select>
-    </div>
-</div>
 <h3>Exibindo dados referentes à: <span class="text-success">@ViewBag.Periodo</span> </h3>
 
 <table class="table table-hover table-bordered table-striped">
