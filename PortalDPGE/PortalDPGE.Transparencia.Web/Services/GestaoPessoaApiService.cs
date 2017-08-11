@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -17,7 +18,18 @@ namespace PortalDPGE.Transparencia.Web.Services
 
         public async Task<IEnumerable<DateTime>> ObterPeriodoQuadroServidorAsync(string situacao = "")
         {
-            return await Task.Run(() => GetMockDate());
+            using (var webClient = new HttpClient())
+            {
+                webClient.BaseAddress = new Uri(EndPointUrl);
+                webClient.DefaultRequestHeaders.Accept.Clear();
+                webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await webClient.GetAsync($"gestaopessoas/periodosquadrocargo/{situacao}");
+                if (response.IsSuccessStatusCode)
+                    return (JsonConvert.DeserializeObject<HashSet<DateTime>>(await response.Content
+                        .ReadAsStringAsync())).OrderBy(d=> d.Date);
+            }
+            return null;
         }
 
         public async Task<IEnumerable<ServidorAtivoViewModel>> ObterListaServidorAtivoPorPeriodoAsync(DateTime periodo)
@@ -28,7 +40,7 @@ namespace PortalDPGE.Transparencia.Web.Services
                 webClient.DefaultRequestHeaders.Accept.Clear();
                 webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await webClient.GetAsync($"gestaopessoas/quadroscargos/ativo/{periodo:'01'-MM-yyyy}");
+                var response = await webClient.GetAsync($"gestaopessoas/quadrocargo/ativo/{periodo:'01'-MM-yyyy}");
                 if (response.IsSuccessStatusCode)
                     return JsonConvert.DeserializeObject<IEnumerable<ServidorAtivoViewModel>>(await response.Content
                         .ReadAsStringAsync());
@@ -44,7 +56,7 @@ namespace PortalDPGE.Transparencia.Web.Services
                 webClient.DefaultRequestHeaders.Accept.Clear();
                 webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await webClient.GetAsync($"gestaopessoas/quadroscargos/inativo/{periodo:'01'-MM-yyyy}");
+                var response = await webClient.GetAsync($"gestaopessoas/servidoresinativo/{periodo:'01'-MM-yyyy}");
                 if (response.IsSuccessStatusCode)
                     return JsonConvert.DeserializeObject<IEnumerable<ServidorInativoViewModel>>(await response.Content
                         .ReadAsStringAsync());
@@ -60,7 +72,7 @@ namespace PortalDPGE.Transparencia.Web.Services
                 webClient.DefaultRequestHeaders.Accept.Clear();
                 webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await webClient.GetAsync($"gestaopessoas/quadroscargoscedidosParaDprj/{periodo:'01'-MM-yyyy}");
+                var response = await webClient.GetAsync($"gestaopessoas/quadrocargocedidosParaDprj/{periodo:'01'-MM-yyyy}");
                 if (response.IsSuccessStatusCode)
                     return JsonConvert.DeserializeObject<IEnumerable<ServidorCedidoParaDprjViewModel>>(await response.Content
                         .ReadAsStringAsync());

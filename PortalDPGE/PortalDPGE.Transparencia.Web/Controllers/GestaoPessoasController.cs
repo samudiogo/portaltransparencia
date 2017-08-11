@@ -18,7 +18,6 @@ namespace PortalDPGE.Transparencia.Web.Controllers
 
 
         private readonly IGestaoPessoaApiService _service;
-        private readonly string _periodoAtual = DateTime.Today.ToString("MM/yy");
 
         public GestaoPessoasController()
         {
@@ -49,22 +48,24 @@ namespace PortalDPGE.Transparencia.Web.Controllers
             };
             ViewBag.dicionarioGraficoPeriodo = DateTime.Today.ToString("MMMM/yyyy");
             ViewBag.dicionarioGrafico = dicionarioGrafico;
-            
+
             ViewBag.dicionarioGraficoTotal = dicionarioGrafico.Values.Sum();
             ViewBag.Situacao = "Ativos";
             ViewBag.ListaPeriodo = await _service.ObterPeriodoQuadroServidorAsync("ativo");
 
 
 
-            return View("QuadroCargo");
+            return View("QuadroCargoAtivo");
         }
+
         [Route("partial-ListaQuadroCargosAtivos")]
         public PartialViewResult ListaQuadroCargosAtivos(DateTime? periodo)
         {
             var periodoFiltro = periodo ?? DateTime.Today;
 
-            var modelList = Task.Run(async () => await _service.ObterListaServidorAtivoPorPeriodoAsync(periodoFiltro)).Result;
+            var modelList = Task.Run(async () => await _service.ObterListaServidorAtivoPorPeriodoAsync(periodoFiltro)).Result.ToList();
 
+            if (!modelList.Any()) return PartialView("_ListaQuadroAtivo", modelList);
             ViewBag.Periodo = modelList.First().Periodo.ToString("MMMM 'de' yyyy");
 
             return PartialView("_ListaQuadroAtivo", modelList);
