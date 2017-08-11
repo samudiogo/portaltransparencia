@@ -1,8 +1,8 @@
-﻿@model IEnumerable<PortalDPGE.Transparencia.Web.Models.ServidorModel>
+﻿@model IEnumerable<PortalDPGE.Transparencia.Web.Models.ServidorAtivoViewModel>
 @{
     ViewBag.Title = "Gestão de Pessoas";
 }
-<h3>Exibindo dados referentes à: <span class="text-success">@ViewBag.Periodo</span> </h3>
+<h4>Exibindo dados referentes à: <span class="text-success">@ViewBag.Periodo</span> </h4>
 
 <table class="table table-hover table-bordered table-striped">
     <thead class="thead-green">
@@ -74,5 +74,5 @@
 </table>
 
 <hr />
-<p><em>última atualização: @Model.First().Periodo.ToString("F")</em></p>
-<p><em>Responsável pelos dados: Gestão de Pessoas da DPRJ</em></p>
+<p class="text-muted"><em>Última atualização: @ViewBag.Periodo)
+<br/>fResponsável pelos dados: Gestão de Pessoas da DPRJ</em></p>

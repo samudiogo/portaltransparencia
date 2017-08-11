@@ -10,7 +10,12 @@ namespace PortalDPGE.Transparencia.Web.Services
 
         Task<IEnumerable<DateTime>> ObterPeriodoQuadroServidorAsync(string situacao = "");
 
-        Task<IEnumerable<ServidorModel>> ObterListaServidorPorSituaoPeriodoAsync(string situacao, DateTime periodo);
+        Task<IEnumerable<ServidorAtivoViewModel>> ObterListaServidorAtivoPorPeriodoAsync(DateTime periodo);
+        Task<IEnumerable<ServidorInativoViewModel>> ObterListaServidorInativoPorPeriodoAsync(DateTime periodo);
+        Task<IEnumerable<ServidorCedidoParaDprjViewModel>> ObterListaServidorCedidoParaDprjPorPeriodoAsync(DateTime periodo);
+        Task<IEnumerable<ServidorCedidoPelaDprjViewModel>> ObterListaServidorCedidoPelaDprjPorPeriodoAsync(DateTime periodo);
+
+
 
     }
 }

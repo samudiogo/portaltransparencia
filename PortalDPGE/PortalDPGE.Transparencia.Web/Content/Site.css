@@ -27,6 +27,7 @@ html {
 body {
     margin-bottom: 80px;
     background: #FAFAFA;
+    
 }
 
 h1,
@@ -35,8 +36,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'gotham-bold', Arial, sans-serif;
-  /*color: #00793A;*/
+    font-family: 'gotham-bold', Arial, sans-serif;
+    color: #4D4D4D;
 }
 
 .topo { 

@@ -40,10 +40,22 @@ namespace PortalDPGE.Transparencia.Web.Controllers
         public async Task<ActionResult> QuadroCargoAtivos()
         {
 
-            ViewBag.Situacao = "Ativos";
-
-            ViewBag.ListaPeriodo = await _service.ObterPeriodoQuadroServidorAsync("ativo");
+            var dicionarioGrafico = new Dictionary<string, int>
+            {
+                {"Defensores",830 },
+                {"Servidores",1300 },
+                {"Extraquadro",250 },
+                {"Cedidos",50 }
+            };
+            ViewBag.dicionarioGraficoPeriodo = DateTime.Today.ToString("MMMM/yyyy");
+            ViewBag.dicionarioGrafico = dicionarioGrafico;
             
+            ViewBag.dicionarioGraficoTotal = dicionarioGrafico.Values.Sum();
+            ViewBag.Situacao = "Ativos";
+            ViewBag.ListaPeriodo = await _service.ObterPeriodoQuadroServidorAsync("ativo");
+
+
+
             return View("QuadroCargo");
         }
         [Route("partial-ListaQuadroCargosAtivos")]
@@ -51,7 +63,7 @@ namespace PortalDPGE.Transparencia.Web.Controllers
         {
             var periodoFiltro = periodo ?? DateTime.Today;
 
-            var modelList = Task.Run(async () => await _service.ObterListaServidorPorSituaoPeriodoAsync("ativo", periodoFiltro)).Result;
+            var modelList = Task.Run(async () => await _service.ObterListaServidorAtivoPorPeriodoAsync(periodoFiltro)).Result;
 
             ViewBag.Periodo = modelList.First().Periodo.ToString("MMMM 'de' yyyy");
 

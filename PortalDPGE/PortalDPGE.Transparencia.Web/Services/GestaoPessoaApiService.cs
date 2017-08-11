@@ -20,7 +20,7 @@ namespace PortalDPGE.Transparencia.Web.Services
             return await Task.Run(() => GetMockDate());
         }
 
-        public async Task<IEnumerable<ServidorModel>> ObterListaServidorPorSituaoPeriodoAsync(string situacao, DateTime periodo)
+        public async Task<IEnumerable<ServidorAtivoViewModel>> ObterListaServidorAtivoPorPeriodoAsync(DateTime periodo)
         {
             using (var webClient = new HttpClient())
             {
@@ -28,9 +28,57 @@ namespace PortalDPGE.Transparencia.Web.Services
                 webClient.DefaultRequestHeaders.Accept.Clear();
                 webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await webClient.GetAsync($"gestaopessoas/quadroscargos/{situacao}/{periodo:'01'-MM-yyyy}");
+                var response = await webClient.GetAsync($"gestaopessoas/quadroscargos/ativo/{periodo:'01'-MM-yyyy}");
                 if (response.IsSuccessStatusCode)
-                    return JsonConvert.DeserializeObject<IEnumerable<ServidorModel>>(await response.Content
+                    return JsonConvert.DeserializeObject<IEnumerable<ServidorAtivoViewModel>>(await response.Content
+                        .ReadAsStringAsync());
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<ServidorInativoViewModel>> ObterListaServidorInativoPorPeriodoAsync(DateTime periodo)
+        {
+            using (var webClient = new HttpClient())
+            {
+                webClient.BaseAddress = new Uri(EndPointUrl);
+                webClient.DefaultRequestHeaders.Accept.Clear();
+                webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await webClient.GetAsync($"gestaopessoas/quadroscargos/inativo/{periodo:'01'-MM-yyyy}");
+                if (response.IsSuccessStatusCode)
+                    return JsonConvert.DeserializeObject<IEnumerable<ServidorInativoViewModel>>(await response.Content
+                        .ReadAsStringAsync());
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<ServidorCedidoParaDprjViewModel>> ObterListaServidorCedidoParaDprjPorPeriodoAsync(DateTime periodo)
+        {
+            using (var webClient = new HttpClient())
+            {
+                webClient.BaseAddress = new Uri(EndPointUrl);
+                webClient.DefaultRequestHeaders.Accept.Clear();
+                webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await webClient.GetAsync($"gestaopessoas/quadroscargoscedidosParaDprj/{periodo:'01'-MM-yyyy}");
+                if (response.IsSuccessStatusCode)
+                    return JsonConvert.DeserializeObject<IEnumerable<ServidorCedidoParaDprjViewModel>>(await response.Content
+                        .ReadAsStringAsync());
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<ServidorCedidoPelaDprjViewModel>> ObterListaServidorCedidoPelaDprjPorPeriodoAsync(DateTime periodo)
+        {
+            using (var webClient = new HttpClient())
+            {
+                webClient.BaseAddress = new Uri(EndPointUrl);
+                webClient.DefaultRequestHeaders.Accept.Clear();
+                webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await webClient.GetAsync($"gestaopessoas/quadroscargoscedidosPelaDprj/{periodo:'01'-MM-yyyy}");
+                if (response.IsSuccessStatusCode)
+                    return JsonConvert.DeserializeObject<IEnumerable<ServidorCedidoPelaDprjViewModel>>(await response.Content
                         .ReadAsStringAsync());
             }
             return null;
