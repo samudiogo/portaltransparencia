@@ -149,3 +149,29 @@ label {
     color: #00793A;
     background-color: #E8E8E8;
 }
+
+/** paginação ***/
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #00793A;
+    border-color: #00793A;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: #0e0e0e;    
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #DCDCDC;
+}
+
+    .pagination > li > a:hover,
+    .pagination > li > span:hover,
+    .pagination > li > a:focus,
+    .pagination > li > span:focus {
+        color: rgb(14,90,50);
+    }

@@ -122,12 +122,26 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\gotham-bold.css" />
+    <Content Include="fonts\gotham-bold.html" />
+    <Content Include="fonts\gotham-bold.svg" />
+    <Content Include="fonts\gotham-book.css" />
+    <Content Include="fonts\gotham-book.html" />
+    <Content Include="fonts\gotham-book.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="bundleconfig.json" />
+    <Content Include="fonts\gotham-bold.eot" />
+    <Content Include="fonts\gotham-bold.otf" />
+    <Content Include="fonts\gotham-bold.ttf" />
+    <Content Include="fonts\gotham-bold.woff" />
+    <Content Include="fonts\gotham-book.eot" />
+    <Content Include="fonts\gotham-book.otf" />
+    <Content Include="fonts\gotham-book.ttf" />
+    <Content Include="fonts\gotham-book.woff" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
