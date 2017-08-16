@@ -101,7 +101,22 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.transparencia.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
-    <None Include="Content\dataTables.pt-br.lang.json" />
+    <Content Include="Content\dataTables.pt-br.lang.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\img\contraste.png" />
+    <Content Include="Content\img\execucao orcamentaria.png" />
+    <Content Include="Content\img\Group.png" />
+    <Content Include="Content\img\legislação.png" />
+    <Content Include="Content\img\licitações.png" />
+    <Content Include="Content\img\logo-md.png" />
+    <Content Include="Content\img\pessoas.png" />
+    <Content Include="Content\img\planejamento.png" />
+    <Content Include="Content\img\Rectangle-17.png" />
+    <Content Include="Content\img\relatorio de gestao.png" />
+    <Content Include="Content\img\texto-maior.png" />
+    <Content Include="Content\img\texto-menor.png" />
+    <Content Include="Content\img\Union.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
@@ -113,6 +128,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="bundleconfig.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
