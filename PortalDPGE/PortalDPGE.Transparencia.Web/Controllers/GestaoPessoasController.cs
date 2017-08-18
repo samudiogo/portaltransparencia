@@ -39,22 +39,16 @@ namespace PortalDPGE.Transparencia.Web.Controllers
         public async Task<ActionResult> QuadroCargoAtivos()
         {
 
-            var dicionarioGrafico = new Dictionary<string, int>
-            {
-                {"Defensores",830 },
-                {"Servidores",1300 },
-                {"Extraquadro",250 },
-                {"Cedidos",50 }
-            };
+            var dicionarioGrafico = await _service.ObterTotaisDeServidoresAtivos();
+
             ViewBag.dicionarioGraficoPeriodo = DateTime.Today.ToString("MMMM/yyyy");
             ViewBag.Periodo = DateTime.Today.ToString("MMMM/yyyy");
             ViewBag.dicionarioGrafico = dicionarioGrafico;
 
-            ViewBag.dicionarioGraficoTotal = dicionarioGrafico.Values.Sum();
+            ViewBag.dicionarioGraficoTotal = dicionarioGrafico?.Values.Sum();
             ViewBag.Situacao = "Ativos";
             ViewBag.ListaPeriodo = await _service.ObterPeriodoQuadroServidorAsync("ativo");
-
-
+            
 
             return View("QuadroCargoAtivo");
         }

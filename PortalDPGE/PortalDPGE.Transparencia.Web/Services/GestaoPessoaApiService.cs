@@ -96,6 +96,23 @@ namespace PortalDPGE.Transparencia.Web.Services
             return null;
         }
 
+        public async Task<Dictionary<string, int>> ObterTotaisDeServidoresAtivos()
+        {
+            using (var webClient = new HttpClient())
+            {
+                webClient.BaseAddress = new Uri(EndPointUrl);
+                webClient.DefaultRequestHeaders.Accept.Clear();
+                webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var response = await webClient.GetAsync("gestaopessoas/totalquadroativo/");
+                if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<IEnumerable<TotalCargoAtivoViewModel>>(await response.Content
+                        .ReadAsStringAsync()).ToDictionary(k => k.Descricao, v => v.Total);
+                
+            }
+            return null;
+        }
+
         #endregion
 
         private IEnumerable<DateTime> GetMockDate()
