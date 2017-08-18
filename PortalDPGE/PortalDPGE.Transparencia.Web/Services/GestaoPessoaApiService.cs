@@ -104,7 +104,7 @@ namespace PortalDPGE.Transparencia.Web.Services
                 webClient.DefaultRequestHeaders.Accept.Clear();
                 webClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await webClient.GetAsync("gestaopessoas/totalquadroativo/");
+                var response = await webClient.GetAsync("gestaopessoas/quadrocargo/totalquadroativo/");
                 if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<IEnumerable<TotalCargoAtivoViewModel>>(await response.Content
                         .ReadAsStringAsync()).ToDictionary(k => k.Descricao, v => v.Total);

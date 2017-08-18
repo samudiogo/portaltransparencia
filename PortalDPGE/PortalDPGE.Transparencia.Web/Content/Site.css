@@ -1,23 +1,23 @@
 ﻿@font-face {
-  font-family: "gotham-bold";
-  src: url("../fonts/gotham-bold.eot");
-  src: url("../fonts/gotham-bold.eot#iefix") format("embedded-opentype"),
-  url("../fonts/gotham-bold.woff") format("woff"),
-  url("../fonts/gotham-bold.ttf") format("truetype"),
-  url("../fonts/gotham-bold.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "gotham-bold";
+    src: url("../fonts/gotham-bold.eot");
+    src: url("../fonts/gotham-bold.eot#iefix") format("embedded-opentype"),
+         url("../fonts/gotham-bold.woff") format("woff"),
+         url("../fonts/gotham-bold.ttf") format("truetype"),
+         url("../fonts/gotham-bold.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: "gotham-book";
-  src: url("../fonts/gotham-book.eot");
-  src: url("../fonts/gotham-book.eot#iefix") format("embedded-opentype"),
-  url("../fonts/gotham-book.woff") format("woff"),
-  url("../fonts/gotham-book.ttf") format("truetype"),
-  url("../fonts/gotham-book.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
+    font-family: "gotham-book";
+    src: url("../fonts/gotham-book.eot");
+    src: url("../fonts/gotham-book.eot#iefix") format("embedded-opentype"),
+         url("../fonts/gotham-book.woff") format("woff"),
+         url("../fonts/gotham-book.ttf") format("truetype"),
+         url("../fonts/gotham-book.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 
 html {
@@ -40,13 +40,31 @@ h6 {
     color: #4D4D4D;
 }
 
+.green-title { 
+    color: #00793A;
+}
+
 .topo { 
     background: #ffffff;
     padding: 20px 0  20px 0;
 }
 
+.search-query:before {
+    content: "";
+    position: absolute;
+    right: 6%;
+    top: 6px;
+    color: #303030;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
 .footer {
-   /* position: absolute;*/
+    /* position: absolute;*/
     bottom: 0;
     width: 100%;
     background-color: #005A2B;
@@ -112,3 +130,4 @@ h6 {
 .subitem-container { margin-top: 20px; margin-bottom: 20px;}
 .dados-subitem { font-weight: bold; }
 .dados-subitem a { color: inherit;}
+.dados-subitem a:hover { text-decoration: none; color: #00793A; }
