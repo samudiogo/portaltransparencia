@@ -1,0 +1,94 @@
+﻿@using Transparencia.Web.Utils
+
+@{
+    ViewBag.Title = "Quadro de cargos - Inativos";
+}
+@section head
+{
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+}
+<ol class="breadcrumb">
+    Você está aqui:
+    <li>@Html.ActionLink("Início", "Index", "Portal")</li>
+    <li>Gestão de Pessoas</li>
+    <li class="active">@ViewBag.Title</li>
+</ol>
+<header>
+    <h1 class="green-title">Gestão de Pessoas</h1>
+    <h3 class="green-title">@ViewBag.Title</h3>
+</header>
+
+<br />
+<h4 class="green-title">Extrair dados:</h4>
+<table id="tab-quadro-inativo" class="table table-responsive table-bordered table-striped">
+    <thead class="green-title">
+        <tr>
+
+            <th>
+                Nome
+            </th>
+            <th>
+                Matrícula
+            </th>
+            <th>
+                Cargo efetivo
+            </th>
+            <th>
+                Aposentado em
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<hr />
+<p class="text-muted">
+    <em>
+        Última atualização: <span id="data-ultima-altualizacao"></span>
+        <br />Responsável pelos dados: Diretoria de Gestão de Pessoas
+    </em>
+</p>
+
+<br /><br />
+<a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+
+@section scripts
+{
+    <script src="~/Scripts/moment.js"></script>
+    @Scripts.Render("~/bundles/datatables")
+
+    <script>
+
+        $(function() {
+            $("#tab-quadro-inativo").DataTable({
+                "language": {
+                    "url": '@Url.Content("~/Content/dataTables.pt-br.lang.json")'
+                },
+                "ajax": {
+                    "url": @*"@AmbienteUtils.ObterAmbienteApi()"*@  '/api/gestaopessoas/quadrocargo/inativo',
+                    "dataSrc": ""
+                },
+                "dom": 'Bfrtip',
+                "buttons": ['csv', 'excel'],
+                "columns": [
+                    { "data": "Nome" },
+                    { "data": "Matricula" },
+                    { "data": "CargoEfetivo" },
+                    {
+                        "data": "Aposentadoria",
+                        render: function (value) {
+                            if (value === null) return "";
+                            return moment(value).format('DD/MM/YY');
+                        }
+                    }
+                ],
+                "initComplete": function () {
+                    $('#data-ultima-altualizacao').html(moment().locale('pt-br').format('DD [de] MMMM [de] YYYY'));
+                }
+            });
+        });
+
+
+    </script>
+
+}

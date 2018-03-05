@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PortalDPGE.Web.Models.RemuneracaoViewModel>
+
+@{
+    ViewBag.Title = "Consulta à remuneração dos membros e servidores da Defensoria Pública";
+}
+
+
+
+<h2>Consulta à Remuneração</h2>
+<p>Confira abaixo, o resultado da sua pesquisa </p>
+
+<table class="table table-bordered table-condensed-to-xtreme table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoVinculo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoVinculo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("DetalheRemuneracao", new {item.Id})" class="green-title">
+                        <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Detalhes
+                    </a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4" align="center">
+                <strong>Nenhum registro encontrado.</strong>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<p>
+    <a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+</p>

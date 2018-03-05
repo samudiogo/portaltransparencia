@@ -1,0 +1,170 @@
+﻿@using System.Web.Optimization
+@model PortalDPGE.Web.Models.RemuneracaoConsultaViewModel
+@{
+    ViewBag.Title = "consulta à remuneração";
+}
+
+<h2>Consulta à Remuneração</h2>
+
+<p>Visando maior transparência do orçamento de nossa Instituição, é possível conferir as remunerações de todos os defensores, servidores públicos do quadro, extraquadro, cedidos e aposentados da Defensoria Pública do Estado do Rio de Janeiro aqui. A consulta não abrange os pensionistas.</p>
+<div>
+    <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#nota-medologica-modal">Nota metodológica</button>
+</div>
+
+@using (Html.BeginForm("consulta-remuneracao", "GastosComPessoal", FormMethod.Post, new { @class = "frm-consulta" }))
+{
+    @Html.HiddenFor(model => model.GRecaptchaResponse)
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Erro: </strong> @Html.ValidationMessageFor(model => model.GRecaptchaResponse)
+        </div>
+    }
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-6">
+                <p>@Html.LabelFor(model => model.NomeOrCpf, htmlAttributes: new { @class = "control-label" })</p>
+                @Html.EditorFor(model => model.NomeOrCpf, new { htmlAttributes = new { @class = "form-control", placeholder = "Parte do nome ou CPF completo", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.NomeOrCpf, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                @if (Global.Dom.Util.ModoSite.Producao == Global.Dom.Util.Itario.AmbienteSite())
+                {
+                    <div class="g-recaptcha" data-sitekey="6LdqaRUUAAAAAEEd3deXrc0-Jea3vtzdnArFdxZ2" data-callback="GRecaptchaResponse" data-size="compact "></div>
+
+                }
+                else
+                {
+                    <div> <h2>Recaptcha apenas em modo de produção</h2>   </div>
+                }
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <button class="btn btn-outline-primary btn btn-primary text-uppercase" type="submit" id="btn-consultar">Consultar</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    <script src='https://www.google.com/recaptcha/api.js?hl=pt-BR'></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        GRecaptchaResponse = function (data) {
+            $("#GRecaptchaResponse").val(data);
+        };
+
+        (function (factory) {
+            if (typeof define === 'function' && define.amd) {
+                define(['jquery'], factory);
+            } else if (typeof exports === 'object') {
+                // Node / CommonJS
+                factory(require('jquery'));
+            } else {
+                factory(jQuery);
+            }
+        })(function ($) {
+            console.log('ready');
+
+            function ConsultaRemuneracaoJs() {
+                this.$form = $(".frm-consulta");
+                this.$gRecaptchaWidgetContainer = $(".g-recaptcha");
+                this.$gRecaptchaResponse = $("#GRecaptchaResponse");
+                this.$btnConsultar = $("#btn-consultar");
+                this.init();
+            }
+
+            ConsultaRemuneracaoJs.prototype = {
+                constructor: ConsultaRemuneracaoJs,
+                init: function () {
+                    this.$form.validate();
+                    this.addListener();
+                },
+                addListener: function () {
+                    this.$btnConsultar.on('click', $.proxy(this.SubimitConsulta, this));
+                    /*this.$gRecaptchaResponse.on('change', $.proxy(this.ToggleGrecaptchaMsgError(this.GRecaptchaValidate(this.$gRecaptchaResponse)), this));*/
+                },
+                ToggleGrecaptchaMsgError: function (isValid) {
+
+                    if (!isValid) {
+                        this.$gRecaptchaWidgetContainer
+                            .after('<p class="text-danger g-recaptcha-error-msg">Valide o recpatcha primeiro.</p>');
+                    } else {
+                        var msgError = $(".g-recaptcha-error-msg");
+                        if (msgError != null)
+                            $(".g-recaptcha-error-msg").remove();;
+                    }
+                },
+
+                GRecaptchaValidate: function (elemento) {
+                    return (elemento.val() !== '');
+                },
+
+                SubimitConsulta: function () {
+                    var isValid = this.GRecaptchaValidate(this.$gRecaptchaResponse);
+                    if (!isValid)
+                        this.ToggleGrecaptchaMsgError(false);
+                    else
+                        this.$form.submit();
+                }
+
+            };
+
+            $(function () {
+                return new ConsultaRemuneracaoJs();
+            });
+        });
+
+    </script>
+
+}
+
+
+<div id="nota-medologica-modal" class="modal modal-fixed-footer">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Nota metodológica</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Dados Cadastrais Disponíveis:</h4>
+                <p>
+                    - Nome do servidor <br />
+                    - Tipo de Vínculo<br />
+                    - Cargo<br />
+                </p>
+
+                <h4>Dados Remuneratórios:</h4>
+                <p><strong>Remuneração Mensal:</strong> Trata-se do somatório das parcelas remuneratórias correspondentes ao cargo ocupado, ao cargo eletivo, à função, ou ao cargo comissionado, relativos ao mês/competência em referência, excetuados os valores que compõem o item Remuneração Eventual.</p>
+                <p><strong>Remuneração Eventual:</strong> Trata-se do somatório de parcelas relativas a 13º Salário, Férias, acertos de meses ou exercícios anteriores, além de auxílios, indenizações e adiantamentos de natureza eventual.</p>
+                <p><strong>Descontos:</strong> Trata-se do somatório de descontos efetuados a título de contribuição previdenciária, imposto de renda retido na fonte, pensão alimentícia, consignatárias,reposições e acertos remuneratórios, excetuados os descontos relativos à remuneração que ultrapassa o limite estabelecido pela Emenda Constitucional nº 41, de 31 de dezembro de 2003.</p>
+                <p><strong>Limite Remuneratório – EC 41/2003:</strong> Trata-se de desconto sobre a remuneração, determinado pelo Inciso XI, do Art. 37, da Constituição Federal, nos termos do Art. 8º da Emenda Constitucional nº 41/2003. É a aplicação do chamado “teto remuneratório” que no Estado é aplicado das seguintes formas:</p>
+
+                <p>
+                    - para os procuradores e defensores públicos, o teto remuneratório, ou o limite da remuneração, é o valor do subsídio dos desembargadores do Tribunal de Justiça;
+                    <br />
+                    - para os demais servidores públicos e militares, o teto remuneratório, ou o limite da remuneração, é valor do subsídio do Governador do Estado.<br />
+                </p>
+
+                <p>No caso de cargos efetivos acumuláveis, o “teto” incide separadamente sobre a remuneração de cada um dos cargos. Já no caso do exercício de cargo em comissão por servidor público efetivo, o “teto” incide sobre o somatório da remuneração do cargo efetivo com a do cargo comissionado.</p>
+                <p>Eventualmente algum servidor poderá estar recebendo acima do teto constitucional por força de decisão judicial.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

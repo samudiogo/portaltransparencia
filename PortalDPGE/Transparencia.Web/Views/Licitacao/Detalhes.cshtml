@@ -1,0 +1,182 @@
+﻿@model Transparencia.Web.Models.LicitacaoViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+
+@*@section facebookMetas
+    {
+        <meta property="og:url" content="@ViewBag.UrlToShare" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Licitação" />
+        <meta property="og:description" content="Documentos de Licitação" />
+        <meta property="og:image" content="http://www.defensoria.rj.def.br/uploads/imagens/imagem-share.jpg" />
+        <meta property="og:locale" content="pt_BR" />
+    }*@
+
+
+<ol class="breadcrumb">
+    Você está aqui:
+    <li>@Html.ActionLink("Início", "Index", "Portal")</li>
+    <li><a href="@Url.Action("Index", "Licitacao")">Licitação</a></li>
+    <li class="active">Detalhes da licitação Nº @Model.CodigoLicitacao</li>
+</ol>
+<div class="page-header">
+    <h4 class="green-title">Detalhes da licitação Nº @Model.CodigoLicitacao</h4>
+</div>
+
+<section class="single" id="conteudo">
+    <!-- sessão de conteudo -->
+    <div class="row">
+        <div class="col-md-12">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.CodigoProcesso)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CodigoProcesso)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataPublicacaoAviso)
+                </dt>
+                <dd>
+                    @if (Model.DataPublicacaoAviso.HasValue)
+        {
+            @Model.DataPublicacaoAviso.Value.ToString("f")
+}
+                </dd>
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataAbertura)
+                </dt>
+                <dd>
+                    @if (Model.DataAbertura.HasValue)
+        {
+            @Model.DataAbertura.Value.ToString("f")
+}
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Modalidade)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Modalidade)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Situacao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Situacao)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Descricao)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DataRealizacao)
+                </dt>
+
+                <dd>
+                    @if (Model.DataRealizacao.HasValue)
+        {
+            @Model.DataRealizacao.Value.ToString("f")
+}
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tipo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ValorEstimativa)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ValorEstimativa)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ValorFinal)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ValorFinal)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Local)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Local)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmpresaVencedora)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EmpresaVencedora)
+                </dd>
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Observacao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Observacao)
+                </dd>
+
+            </dl>
+
+            @if (Model.ListaDocumentos.Any())
+            {
+                <div class="col-md-12">
+                    <div class="col-md-8">
+                        <table class="table table-condensed table-bordered table-responsive">
+                            <thead class="thead-dpge">
+                                <tr>
+                                    <th class="text-center">Documentos</th>
+                                    <th class="text-center">Downloads</th>
+                                    <th class="text-center">Enviado Por</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ListaDocumentos)
+                                {
+                                    <tr>
+
+                                        <td>@item.Nome</td>
+                                        <td><a class="btn btn-outline-primary btn btn-primary btn-sm text-uppercase" href="@Url.Content(item.Url)">Download</a></td>
+                                        <td>@item.NomeUsuario, em @item.DataInclusao</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+
+            <p>
+                @Html.ActionLink("voltar", "Index", null, new { @class = "btn btn-xs btn-default" })
+            </p>
+        </div>
+    </div>
+</section>

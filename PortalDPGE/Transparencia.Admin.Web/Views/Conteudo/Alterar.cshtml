@@ -1,0 +1,89 @@
+﻿@model Transparencia.Application.ViewModels.Portal.ConteudoAlteraViewModel
+
+@{
+    ViewBag.Title = "Alterar";
+}
+@section header{
+
+    <link href="~/Content/ckeditor.custom.css" rel="stylesheet" />
+
+}
+
+<div class="page-header">
+    <h2>
+        <small>Alterar Conteúdo</small>
+    </h2>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.AntiForgeryToken()
+    <div class="form-container-notop">
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-1" })
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.SecaoConteudo, htmlAttributes: new {@class = "control-label col-md-1"})
+                        <div class="col-md-3">
+                            @Html.HiddenFor(model => model.SecaoConteudo.Id)
+                            <p class="form-control-static">@Model.SecaoConteudo.Nome</p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-lg-offset-1 col-md-11">
+                            @Html.EditorFor(model => model.ConteudoHtml, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConteudoHtml, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-container-footer">
+        <div class="pull-left">
+            <a href="@Url.Action("Index")" class="btn btn-success"><span class="glyphicon glyphicon-circle-arrow-left"> </span> Voltar</a>
+        </div>
+        <div class="pull-right">
+            <button type="submit" class="btn btn-success "> Salvar alteração <span class="glyphicon glyphicon glyphicon-ok"></span></button>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+}
+
+
+@section footer{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.charactercounter.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script>
+        $(function () {
+            @* script responsável pelo editor de HTML*@
+            CKEDITOR.replace("ConteudoHtml", {
+                //filebrowserImageBrowseUrl: "/Imagem/BrowsePartial",
+                filebrowserUploadUrl: "@Url.Action("Upload","Imagem")",
+                uploadUrl: "@Url.Action("QuickUpload","Imagem")"
+                @if (Model.PortalId == (int) PortalDPGE.Dom.Regras.PortalRegras.Portais.EADId) {
+                    <text>
+                , contentsCss: ["@(ViewBag.EnderecoEAD +"Content/css/bootstrap.css")"
+                              , "@(ViewBag.EnderecoEAD +"Content/fonts/font-awesome.css")"
+                              , "@(ViewBag.EnderecoEAD +"Content/css/creative.css")"]
+                </text>
+                }
+            });
+        });
+    </script>
+}

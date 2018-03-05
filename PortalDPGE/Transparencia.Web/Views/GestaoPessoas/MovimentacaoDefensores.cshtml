@@ -1,0 +1,79 @@
+﻿@model IEnumerable<PortalDPGE.Web.Models.DocumentoMovimentacaoViewModel>
+
+@{
+    ViewBag.Title = "Movimentação";
+}
+
+<ol class="breadcrumb">
+    Você está aqui:
+    <li>@Html.ActionLink("Início", "Index", "Portal")</li>
+    <li>Gestão de Pessoas</li>
+    <li class="active">@ViewBag.Title</li>
+</ol>
+
+<header>
+    <h1 class="green-title">Gestão de Pessoas</h1>
+    <h3 class="green-title">@ViewBag.Title</h3>
+</header>
+
+<section class="min-height-content">
+
+<!-- sessão de conteudo -->
+<p>Acompanhe a movimentação dos defensores públicos.</p>
+@if (Model != null)
+{
+
+    <div aria-multiselectable="true" class="panel-group" id="accordion" role="tablist">
+        @foreach (var cat in Model)
+         {
+            <div class="panel panel-default">
+                <div class="panel-heading" id="heading-@cat.Id" role="tab">
+                    <h3 class="panel-title">
+                        <a aria-controls="collapseTwo" aria-expanded="false" class="collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-@cat.Id" role="button">
+                            @cat.Mes.ToString("MMMM/yyyy")
+                        </a>
+                    </h3>
+                </div>
+
+                <div aria-labelledby="heading-@cat.Id" class="panel-collapse collapse" id="collapse-@cat.Id" role="tabpanel">
+                    <div class="panel-body">
+                        @if (cat.ListaDocumentoItems != null)
+                        {
+                            foreach (var doc in cat.ListaDocumentoItems)
+                            {
+                                <div class="col-xs-12">
+                                    <h4>@doc.Titulo</h4>
+                                    @{ var extensao = Path.GetExtension(doc.Link).Substring(1); }
+                                    <a class="btn btn-xs btn-default btn-@extensao" href="@Url.Content(doc.Link)" target="new">VER @extensao.ToUpper()</a>
+                                </div>
+                            }
+                         }
+                    </div>
+                </div>
+
+            </div>
+         }
+
+    </div>
+ }
+@if (ViewBag.Historico == false)
+{
+    <div class="alert alert-warning alert-dismissable text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p>
+            Exibindo os resultados mais recentes, para visualizar todos <a href="~/gestao-pessoas/movimentacao-defensores-publicos-historico">clique aqui</a>
+        </p>
+    </div>    
+}
+
+</section>
+
+<hr />
+<p class="text-muted">
+    <em>
+        Responsável pelos dados: Coordenação de Movimentação
+    </em>
+</p>
+
+<br /><br />
+<a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>

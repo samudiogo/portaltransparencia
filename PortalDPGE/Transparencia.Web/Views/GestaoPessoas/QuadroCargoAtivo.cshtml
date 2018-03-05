@@ -1,0 +1,271 @@
+﻿@using Transparencia.Web.Utils
+
+@{
+    ViewBag.Title = "Quadro de cargos - Ativos";
+}
+
+@section head
+{
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+}
+<ol class="breadcrumb">
+    Você está aqui:
+    <li>@Html.ActionLink("Início", "Index", "Portal")</li>
+    <li>Gestão de Pessoas</li>
+    <li class="active">@ViewBag.Title</li>
+</ol>
+<header>
+    <h1 class="green-title">Gestão de Pessoas</h1>
+    <h3 class="green-title">@ViewBag.Title</h3>
+</header>
+
+
+<div class="row align-items-end">
+    <div class="col-md-4">
+        <canvas id="chart-area"></canvas>
+        <p class="text-muted">
+            <br /><br />
+            <em>
+                Referência: <span class="data-referente"></span> <br />
+                Responsável pelos dados: Diretoria de Gestão de Pessoas
+            </em>
+        </p>
+    </div>
+    <div class="col-md-4 align-self-end">
+        <table id="tab-grafico" class="table table-bordered table-striped">
+            <thead class="green-title">
+                <tr>
+                    <th>Categoria</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<hr />
+
+<h4 class="green-title">Extrair dados:</h4>
+<table id="tab-quadro-ativo" class="table table-responsive table-bordered table-striped">
+    <thead class="green-title">
+        <tr>
+
+            <th>
+                Nome
+            </th>
+            <th>
+                Matrícula
+            </th>
+            <th>
+                Cargo efetivo
+            </th>
+            <th>
+                Cargo em comissão
+            </th>
+            <th>
+                Lotação
+            </th>
+            <th>
+                Nomeado em
+            </th>
+            <th>Posse</th>
+            <th>
+                Estável
+            </th>
+
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<hr />
+<p class="text-muted">
+    <em>
+        Última atualização: <span id="data-ultima-altualizacao"></span>
+        <br />Responsável pelos dados: Diretoria de Gestão de Pessoas
+    </em>
+</p>
+
+<br /><br />
+<a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Content/grafico-temas.json"></script>
+    <script src="~/Scripts/Chart.bundle.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+
+    <script>
+        (function(factory) {
+            if (typeof define === 'function' && define.amd) {
+                define(['jquery'], factory);
+            } else if (typeof exports === 'object') {
+                factory(require('jquery'));
+            } else {
+                factory(jQuery);
+            }
+        })(function($) {
+            function ConsultaQuadroAtivo() {
+                this.$periodoSelect = $("#periodo-data");
+                this.$quadroCargoTb = $("#tab-quadro-ativo");
+                this.$endpoint = "@AmbienteUtils.ObterAmbienteApi()";
+                this.$agora = {};
+
+
+                //grafico:
+                this.$graficoCanvas = document.getElementById("chart-area");
+                this.$graficoObj = {};
+                this.$graficoTb = $("#tab-grafico");
+                this.init();
+            }
+
+            ConsultaQuadroAtivo.prototype = {
+                constructor: ConsultaQuadroAtivo,
+                init: function () {
+                    this.initGrafico();
+                    this.dtInit();
+                    this.addListener();
+
+                },
+
+                addListener: function() {
+
+                    this.$periodoSelect.on('change', $.proxy(this.atualizaRegistrosPorPeriodo, this));
+                },
+
+
+                atualizaReferenciaData: function() {
+                    $(".data-referente").html(moment().locale('pt-br').format('MMMM [de] YYYY'));
+                },
+                chartColors: JSON.parse(window.temasCores),
+                xchartColors: {
+                    defensores: 'rgb(19,120,65)',
+                    servidores: 'rgb(110,174,57)',
+                    extraquadro: 'rgb(33,172,95)',
+                    cedidos: 'rgb(250,196,64)'
+                },
+
+                 dtInit: function () {
+                    var table = this.$quadroCargoTb.DataTable({
+                        "language": {
+                            "url": '@Url.Content("~/Content/dataTables.pt-br.lang.json")'
+                        },
+                        "ajax": {
+                            "url": this.$endpoint + '/api/gestaopessoas/quadrocargo/ativo',
+                            "dataSrc": ""
+                        },
+                        "dom": 'Bfrtip',
+                        "buttons": ['csv', 'excel'],
+                        "columns": [
+                            { "data": "Nome" },
+                            { "data": "Matricula" },
+                            { "data": "CargoEfetivo" },
+                            { "data": "CargoEmComissao" },
+                            {
+                                "data": "LotacaoAtual"
+                                ,
+                                render: function (value) {
+                                    if (value === null) return "";
+                                    var lotacoes = value.split(';');
+
+
+                                    if (lotacoes.length == 1) {
+                                        return lotacoes[0];
+                                    }
+
+                                    var ul = document.createElement('ul');
+                                    for (var i = 0; i < lotacoes.length - 1; i++) {
+                                        if (lotacoes[i] == "") {
+                                            continue;
+                                        }
+                                        var li = document.createElement('li');
+                                        li.innerHTML = lotacoes[i];
+                                        ul.appendChild(li);
+                                    }
+                                    return ul.outerHTML;
+                                }
+                            },
+                            {
+                                "data": "Nomeacao",
+                                render: function(value) {
+                                    if (value === null) return "";
+                                    return moment(value).format('DD/MM/YY');
+                                }
+                            },
+                            {
+                                "data": "Exercicio",
+                                render: function (value) {
+                                    if (value === null) return "";
+                                    return moment(value).format('DD/MM/YY');
+                                }
+                            },
+                            { "data": "Estavel" }
+                        ],
+                        "initComplete": function() {
+                            $('#data-ultima-altualizacao').html(moment().locale('pt-br').format('DD [de] MMMM [de] YYYY'));
+                        }
+                    });
+                    this.get = function () { return table; }
+
+                },
+                initGrafico: function () {
+                    this.atualizaReferenciaData();
+                    var ctx = this.$graficoCanvas.getContext('2d');
+                    var instancia = this;
+                    $.get(this.$endpoint + '/api/gestaopessoas/quadrocargo/totais-quadro-servidores-ativos')
+                        .done(function (data) {
+                            console.log(data);
+                            instancia.$graficoObj = new Chart(ctx,
+                                {
+                                    type: 'pie',
+                                    data: {
+                                        labels: Object.keys(data),
+                                        datasets: [
+                                            {
+                                                data: Object.values(data),
+
+                                                backgroundColor: [
+                                                    instancia.chartColors.CorUm,
+                                                    instancia.chartColors.CorDois,
+                                                    instancia.chartColors.CorTres,
+                                                    instancia.chartColors.CorQuatro
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom',
+                                            fullWidth: true
+                                        }
+                                    }
+                                });
+                            instancia.$graficoTb.find('tbody').html('');
+                            Object.keys(data).forEach(function(key) {
+                                instancia.$graficoTb.find('tbody:last')
+                                    .append('<tr><td>' + key + '</td><td>' + data[key] + '</td></tr>');
+                            });
+                        });
+
+                    return this.$graficoObj;
+                }
+
+            };
+            $(function () {
+
+
+
+
+                return new ConsultaQuadroAtivo();
+
+
+
+            });
+        });
+    </script>
+
+
+}

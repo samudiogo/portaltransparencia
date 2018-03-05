@@ -1,0 +1,53 @@
+﻿@using PortalDPGE.Dom.Util
+@model IEnumerable<Global.Dom.Entidade.PortalDPGE.Documento>
+
+<ol class="breadcrumb">
+    Você está aqui:
+    <li>@Html.ActionLink("Início", "Index", "Portal")</li>
+    <li>Concursos</li>
+    <li class="active">@ViewBag.Title</li>
+</ol>
+
+<div class="page-header">
+    <h1 class="green-title">@ViewBag.Title</h1>
+</div>
+
+<section class="single">
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive table-bordered">
+                    <thead class="green-title">
+                        <tr>
+                            <th>Data Publicação</th>
+                            <th>Descrição</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.DataPublicacao.Value.ToString("d")</td>
+                                <td>
+                                    <a class="green-title" href="@Url.Content(DicionarioPortalDPGE.uploadsArquivos + item.Arquivo.NomeServidor)" target="new">
+                                        @Html.Raw(HttpUtility.HtmlDecode(item.Nome))
+                                    </a>
+                                </td>
+                                <td title="@Html.Raw(HttpUtility.HtmlDecode(item.Descricao))">
+                                    <a class="btn btn-outline-primary btn btn-primary btn-sm text-uppercase" target="new" href="@Url.Content(DicionarioPortalDPGE.uploadsArquivos + item.Arquivo.NomeServidor)">PDF</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    }
+</section>
+
+<br>
+<a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+<br />

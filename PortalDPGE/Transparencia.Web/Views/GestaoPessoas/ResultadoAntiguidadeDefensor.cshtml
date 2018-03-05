@@ -1,0 +1,144 @@
+﻿@using Transparencia.Web.Utils
+
+@{
+    ViewBag.Title = "Lista de Antiguidade - Defensores";
+}
+@section head{
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+<ol class="breadcrumb">
+    Você está aqui:
+    <li>@Html.ActionLink("Início", "Index", "Portal")</li>
+    <li>Gestão de Pessoas</li>
+    <li class="active">@ViewBag.Title</li>
+</ol>
+<header>
+    <h1 class="green-title">Gestão de Pessoas</h1>
+    <h3 class="green-title">@ViewBag.Title</h3>
+</header>
+<div class="well-sm">
+    <p>
+        O <strong>DEFENSOR PÚBLICO GERAL DO ESTADO</strong>, no uso de suas atribuições, <strong>FAZ SABER</strong> que é a
+        seguinte a <strong>Lista de Antiguidade</strong> dos Defensores Públicos, nos termos do § 2º do art. 63 da Lei
+        Complementar nº 06 de 12.05.1977.
+    </p>
+</div>
+
+
+
+<section class="single">
+    <h4 class="green-title">Extrair dados:</h4>
+    <table class="table table-condensed table-bordered" id="tabela-resultado">
+        <thead class="green-title">
+            <tr>
+                <th>Sigla do Cargo</th>
+                <th>Nome do Cargo</th>
+                <th>Ordem de Antiguidade</th>
+                <th>Nome do Defensor</th>
+                <th>Periodo de Classe</th>
+                <th>Periodo de Carreira</th>
+                <th>Periodo no Estado</th>
+                <th>Periodo de Servico Publico</th>
+                <th>Periodo de Aposentacao</th>
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <hr />
+    <p class="text-muted">
+        <em>
+            Última atualização: <span id="data-ultima-altualizacao"></span>
+            <br />Responsável pelos dados: Coordenação de Movimentação
+        </em>
+    </p>
+
+    <br /><br />
+    <a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+
+</section>
+@section scripts
+{
+    <script src="~/Scripts/moment.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#tabela-resultado").DataTable({
+                "language": {
+                    "url": "@Url.Content("~/Content/dataTables.pt-br.lang.json")"
+                },
+                "dom": 'Bfrtip',
+                "buttons": ['csv', 'excel']
+                , "sort": false
+                , "pageLength": 25
+                , "ajax": {
+                    "url": '@AmbienteUtils.ObterAmbienteApi()' + '/api/gestaopessoas/antiguidade-defensores-publicos',
+                    "dataSrc": ""
+                },
+                "columns": [
+
+                    { "data": "SiglaCargo" },
+                    { "data": "NomeCargo" },
+                    { "data": "Ordem" },
+                    { "data": "NomeDefensor" },
+
+
+                    { "data": "PeriodoClasse" },
+                    //{
+                    //    "data": "PeriodoClasse",
+                    //    render: function (value) {
+                    //        if (value == null) return "";
+                    //        return moment(value).format('DD/MM/YY');
+                    //    }
+                    //},
+
+                    {
+                        "data": "PeriodoCarreira",
+                        render: function (value) {
+                            return value;
+
+                            if (value == null) return "";
+                            return moment(value).format('DD/MM/YY');
+                        }
+                    },
+                    {
+                        "data": "PeriodoEstado",
+                        render: function (value) {
+                            return value;
+                            if (value == null) return "";
+                            return moment(value).format('DD/MM/YY');
+                        }
+                    },
+                    {
+                        "data": "PeriodoServicoPublico",
+                        render: function (value) {
+                            return value;
+                            if (value == null) return "";
+                            return moment(value).format('DD/MM/YY');
+                        }
+                    },
+                    {
+                        "data": "PeriodoAposentacao",
+                        render: function (value) {
+                            return value;
+                            if (value == null) return "";
+                            return moment(value).format('DD/MM/YY');
+                        }
+                    },
+
+
+
+                ],
+                "initComplete": function () {
+                    $('#data-ultima-altualizacao').html(moment().locale('pt-br').format('DD [de] MMMM [de] YYYY'));
+                }
+
+            });
+
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+    </script>
+}

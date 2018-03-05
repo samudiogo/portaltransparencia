@@ -1,0 +1,161 @@
+﻿<!-- logo e busca  -->
+<div class="hidden-sm hidden-xs topo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 logo">
+                <a class="" href="#">
+                    <img class="img-responsive" src="~/content/img/logo-md.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-4">
+
+                <div class="row">
+                    <div class="col-md-12 search">
+                        <form action="/busca" id="form-search-geral" method="get" role="search">
+                            <fieldset class="search-query">
+                                <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- menu  -->
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header visible-xs-block visible-sm-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <form action="/busca" class="search-mobile" id="form-search-geral" method="get" role="search">
+                                <fieldset class="search-query">
+                                    <input type="search" class="form-control input-sm " name="palavrachave" id="palavrachave" value="" placeholder="busca">
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="pull-right">
+                            <h5 style="padding-top: 7px; margin-right: 5px;" class="visible-xs-inline-block text-white">
+                                MENU
+                            </h5>
+                            <button type="button" class="pull-right navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="true">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="">@Html.ActionLink("Início", "Index", "Portal")</li>
+                    <li class="">@Html.ActionLink("Perguntas Frequentes", "PerguntasFrequentes", "Portal")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Transparência
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu columns-3 multi-column columns-3">
+                            <div class="row row-menu">
+                                <div class="col-sm-4">
+                                    <ul class="multi-column-dropdown">
+                                        <li>
+                                            <a href="/execucao-orcamentaria/index">Execução Orçamentária</a>
+                                        </li>
+
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="/licitacoes-contratos-convenios/index">Licitações e Contratos</a>
+                                        </li>
+
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Gestão de Pessoas</a>
+                                        </li>
+
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Gastos com Pessoal</a>                                            
+                                        </li>
+
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Relatório de Gestão</a>
+                                        </li>
+
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="#">Legislações Orçamentárias</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Concursos
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu columns-3 multi-column columns-3">
+                            <div class="row row-menu">
+                                <div class="col-sm-4">
+                                    <ul class="multi-column-dropdown">
+                                        <li><a href="~/concursos/Concurso-Defensor"> Defensor Público </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="~/concursos/Concurso-Residente-Juridico"> Residente Jurídico </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="~/concursos/Concurso-Estagio-Forense"> Estágio Forense </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="~/concursos/Concurso-Servidor"> Servidor </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            A Defensoria
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu columns-3 multi-column columns-3">
+                            <div class="row row-menu">
+                                <div class="col-sm-4">
+                                    <ul class="multi-column-dropdown">
+                                        <li><a href="http://www.defensoria.rj.def.br/Institucional/Estrutura" target="_blank"> Estrutura Organizacional </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"> Estrutura Administrativa </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="http://www.defensoria.rj.def.br/Cidadao/Enderecos-para-Atendimento" target="_blank"> Locais de Atendimento </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="http://www.defensoria.rj.def.br/AutoAtendimento/Navegar/3690" target="_blank"> Documentos Necessários </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="http://www.defensoria.rj.def.br/AutoAtendimento/Navegar/nossos-servicos" target="_blank"> Nossos Serviços </a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="http://www.defensoria.rj.def.br/Cidadao/Atendimento-On-line" target="_blank"> Ficou com dúvidas? Fale com nossos analistas no Atendimento Online </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</nav>

@@ -1,0 +1,30 @@
+﻿@model PortalDPGE.Restrito.Web.Models.DocumentoModelLista
+
+@{
+    //TODO: remover isso aqui
+    ViewBag.Title = "Execução Orçamentária";
+}
+
+<div class="page-header">
+</div>
+<section class="min-height-content">
+    
+    @foreach (var item in Model.TiposDocumentos)
+    {
+        <section class="single">
+            @Html.MontaPastaDocumentoTrans(item.Documentos, item.Link, 0)
+        </section>
+
+        if (item.ConteudoHtml != null)
+        {
+            @Html.Raw(item.ConteudoHtml)
+        }
+
+    }
+   
+    <br />
+
+    <br>
+    <a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+    <br />
+</section>

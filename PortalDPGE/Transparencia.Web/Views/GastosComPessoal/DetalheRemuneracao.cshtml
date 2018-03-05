@@ -1,0 +1,71 @@
+﻿@using Global.Dom.Util
+@model PortalDPGE.Web.Models.RemuneracaoViewModel
+
+@{
+    ViewBag.Title = "Consulta Remuneração";
+}
+
+<h1>Consulta à Remuneração</h1>
+<p>Confira a remuneração dos membros e servidores da Defensoria Pública </p>
+
+
+<div>
+    <h5>
+        @Model.Nome<br />
+        <small id="cpf">@Model.Cpf.MascaraCpf()</small>
+    </h5>
+    @using (Html.BeginForm("DetalheRemuneracao", "GastosComPessoal", FormMethod.Post))
+    {
+        @*@Html.HiddenFor(model => model.Nome)*@
+        <h5>Selecione o mês de referência:</h5>
+        <div class="form-group row">
+            <div class="col-md-2">
+                @Html.DropDownList("competenciaData", (List<SelectListItem>)ViewBag.ListaCompetencia, new { @class = "form-control" })
+            </div>
+        </div>
+    }
+
+
+    <hr />
+    <div id="alerts"></div>
+    <div id="detalhe-remuneracao">
+        @{
+            Html.RenderPartial("_DetalheMensalRemuneracao");
+        }
+    </div>
+
+</div>
+<p>
+    <a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+</p>
+
+@section scripts
+{
+    <script>
+        $(function() {
+
+            $("#competenciaData")
+                .change(function() {
+                    $.ajax({
+                        type: "post",
+                        url: '@Url.Action("_DetalheMensalRemuneracao")',
+                        dataType: 'html',
+                        data: {
+                            'competenciaData': $(this).val()
+                        },
+                        async: true,
+                        beforeSend: function() {
+                            $("#detalhe-remuneracao")
+                                .html('<img id="loading" src="@Url.Content("~/Content/img/loading.svg")" style="margin: auto; display:block; width:128px"/>');
+                        },
+                        success: function(data) {
+                            setTimeout(function() {
+                                $("#detalhe-remuneracao").html(data);
+                            }, 2000);
+                        }
+                    });
+                });
+
+        });
+    </script>
+}

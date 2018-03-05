@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Transparencia.Web.Models.LicitacaoViewModel>
+
+@section head{
+
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+@*@section facebookMetas
+    {
+        <meta property="og:url" content="@ViewBag.UrlToShare" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Licitação" />
+        <meta property="og:description" content="Documentos de Licitação" />
+        <meta property="og:image" content="http://www.defensoria.rj.def.br/uploads/imagens/imagem-share.jpg" />
+        <meta property="og:locale" content="pt_BR" />
+    }*@
+
+
+<ol class="breadcrumb">
+    Você está aqui:
+    <li>@Html.ActionLink("Início", "Index", "Portal")</li>
+    <li class="active">Licitação</li>
+</ol>
+<div class="page-header">
+    <h1 class="green-title">Licitação</h1>
+</div>
+
+@Html.Partial("_FiltroLicitacao", new Transparencia.Web.Models.FiltroLicitacaoViewModel())
+
+
+<section class="single" id="conteudo">
+    <!-- sessão de conteudo -->
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tabela-licitacao" class="table table-condensed table-bordered table-hover table-responsive text-center">
+                <thead class="thead-dpge">
+                    <tr>
+
+                        <th class="col-md-2 text-center">Nº Licitação</th>
+                        <th class="col-md-1 text-center">Modalidade</th>
+                        <th class="col-md-6 text-center">Objeto</th>
+                        <th class="col-md-1 text-center">Abertura</th>
+                        <th class="col-md-1 text-center">Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><b>@item.CodigoLicitacao</b></td>
+                                <td>@item.Modalidade</td>
+                                <td>@item.Descricao</td>
+                                <td>
+                                    @if (item.DataAbertura.HasValue)
+                                    {
+                                        <time datetime="@item.DataAbertura.Value.ToString("d")">@item.DataAbertura.Value.ToString("d")</time>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Abrir", "Detalhes", new { id = item.Id }, new { @class = "btn btn-outline-primary btn btn-primary btn-sm text-uppercase" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>    
+
+    @{
+        Html.RenderPartial("_SocialPluginShare");
+    }
+</section>
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/datatables")
+
+    <script>
+        $(document)
+            .ready(function () {
+                $("#tabela-licitacao")
+                    .dataTable({
+                        "language": {
+                    "url": '@Url.Content("~/Content/dataTables.pt-br.lang.json")'
+                        },
+                        "dom": 'Bfrtip',
+                        "buttons": ['csv', 'excel'],
+                        "sort": false
+                    });
+
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+    </script>
+}

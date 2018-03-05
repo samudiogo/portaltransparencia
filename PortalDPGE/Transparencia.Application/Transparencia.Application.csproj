@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B625BE54-952E-4025-905A-DF962568EEC0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Transparencia.Application</RootNamespace>
+    <AssemblyName>Transparencia.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers, Version=3.2.7.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.3.2.7\lib\net45\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PortalDPGE.Dom">
+      <HintPath>..\PortalDPGE.Dom\bin\Debug\PortalDPGE.Dom.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile.cs" />
+    <Compile Include="Contratos\DRH\IGestaoPessoasAdmAppService.cs" />
+    <Compile Include="Contratos\DRH\IGestaoPessoasConsultasAppService.cs" />
+    <Compile Include="FileHelperMappings\CargosVagosEOcupadosFileMap.cs" />
+    <Compile Include="FileHelperMappings\EstagiariosFileMap.cs" />
+    <Compile Include="FileHelperMappings\ResidentesJuridicosFileMap.cs" />
+    <Compile Include="FileHelperMappings\ServidorQuadroAtivoFileMap.cs" />
+    <Compile Include="FileHelperMappings\ServidorQuadroInativoFileMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Contratos\DRH\IMovimentacaoDefensoresAppService.cs" />
+    <Compile Include="Servicos\DRH\GestaoPessoasAdmAppService.cs" />
+    <Compile Include="Servicos\DRH\GestaoPessoasConsultasAppService.cs" />
+    <Compile Include="Servicos\DRH\MovimentacaoDefensoresAppService.cs" />
+    <Compile Include="ViewModels\DRH\AntiguidadeDefensorViewModel.cs" />
+    <Compile Include="ViewModels\DRH\AntiguidadeServidoresViewModel.cs" />
+    <Compile Include="ViewModels\DRH\CargosVagosEOcupadosViewModel.cs" />
+    <Compile Include="ViewModels\DRH\DocumentoViewModel.cs" />
+    <Compile Include="ViewModels\DRH\EstagiariosViewModel.cs" />
+    <Compile Include="ViewModels\DRH\MovimentacaoDefensorViewModel.cs" />
+    <Compile Include="ViewModels\DRH\ResidentesJuridicosViewModel.cs" />
+    <Compile Include="ViewModels\DRH\ServidorQuadroAtivoViewModel.cs" />
+    <Compile Include="ViewModels\DRH\ServidorQuadroInativoViewModel.cs" />
+    <Compile Include="ViewModels\Portal\ConteudoViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Global.Dados\Global.Dados.csproj">
+      <Project>{C468B1EC-272A-45E5-972C-389FE3E6D07E}</Project>
+      <Name>Global.Dados</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Global.Dom\Global.Dom.csproj">
+      <Project>{fb540cad-9ae2-4c25-983f-36b4a8a36330}</Project>
+      <Name>Global.Dom</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalDPGE.Dados\PortalDPGE.Dados.csproj">
+      <Project>{01474B37-1985-4914-9AF5-0552AF1DFF21}</Project>
+      <Name>PortalDPGE.Dados</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transparencia.Dom\Transparencia.Dom.csproj">
+      <Project>{4f577e14-9f2a-4dd8-9dad-39ba71917e22}</Project>
+      <Name>Transparencia.Dom</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

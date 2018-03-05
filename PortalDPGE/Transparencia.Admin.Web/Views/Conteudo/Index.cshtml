@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Transparencia.Application.ViewModels.Portal.ConteudoConsultaViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section header{
+    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+}
+
+<div class="page-header">
+    <h2>
+        <small>Páginas</small>
+        @*@if (Html.VerificaPermissao("Transparencia", "Cadastrar"))
+        {
+            <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-default" data-tooltip="true" data-placement="right" title="Cadastrar página">+</a>
+        }*@
+        <a href="@Url.Action("Cadastrar")" class="btn btn-sm btn-default" data-tooltip="true" data-placement="right" title="Cadastrar página">+</a>
+
+    </h2>
+</div>
+
+@if (Model != null)
+{
+
+
+    <table id="tabela-paginas" class="table table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecaoConteudo.Nome)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alias)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecaoConteudo.Nome)
+                </td>
+                <td>
+                    <nobr>
+                        <a href="@Url.Action("Alterar", new { id = item.Id })" class="glyphicon glyphicon-edit" data-tooltip="true" data-placement="left" title="Alterar Conteúdo"></a>
+                        <a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#ConsultaModal" data-valorid="@item.Id" data-valordesc="@item.Id" data-tooltip="true" data-placement="right" title="Excluir Conteúdo"></a>
+                    </nobr>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3 class="text-danger">Não há registros à serem exibidos</h3>
+}
+
+@Html.ModalExclusao(Url.Action("Excluir", "Conteudo"), "ConsultaModal")
+
+@section footer{
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/jquery.dataTables.bootstrap.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#tabela-paginas").dataTable({
+                "language": {
+                    "url": "@Url.Content("~/Content/jquery.datatables.traducao.ptbr.json")"
+                }
+            });
+
+            $('[data-tooltip="true"]').tooltip();
+
+            $('#ConsultaModal').on('show.bs.modal', function (event) {
+                var link = $(event.relatedTarget) // Busca o link que abriu a modal
+                // Extrai as informações dos atributos data-*
+                var id = link.data('valorid')
+                var desc = link.data('valordesc');
+
+                // Atualiza o hidden do formulário e o texto da janela
+                var modal = $(this)
+                modal.find('#FormId').val(id);
+                modal.find('#textoModal').html("Deseja realmente excluir o Conteúdo " + desc + "?");
+                modal.find('#tituloModal').html("Exclusão de Conteúdo")
+            })
+        });
+
+    </script>
+}

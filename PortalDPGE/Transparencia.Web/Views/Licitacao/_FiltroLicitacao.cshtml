@@ -1,0 +1,24 @@
+﻿@model Transparencia.Web.Models.FiltroLicitacaoViewModel
+
+@{
+    ViewBag.Title = "Filtro de Licitações";
+}
+
+@using (Html.BeginForm("FiltraLicitacoes", "Licitacao", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="col-md-6 form-group green-title">
+            <div class="row">
+                @Html.LabelFor(model => model.IdFiltro, htmlAttributes: new { @class = "text-filtro-lic control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.IdFiltro, Model.ListaFiltro, new { @class = "dropdown-filtro-lic form-control" })
+                    @Html.ValidationMessageFor(model => model.IdFiltro, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" value="Filtrar" class="btn btn-outline-primary btn btn-primary btn-sm text-uppercase btn-filtro-lic" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

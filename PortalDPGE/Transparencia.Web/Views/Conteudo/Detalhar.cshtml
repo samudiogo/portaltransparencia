@@ -1,0 +1,18 @@
+﻿@model PortalDPGE.App.Models.ConteudoDetalharModel
+
+
+<ol class="breadcrumb">
+    Você está aqui:
+    <li><a href="">@Model.Secao</a></li>
+    <li class="active">@Model.Titulo</li>
+</ol>
+<div class="page-header">
+    <h1>@Model.Titulo</h1>
+</div>
+<section class="min-height-content">
+    @Html.Raw(HttpUtility.HtmlDecode(Model.ConteudoHtml))
+    <br>
+    <a href="javascript:window.history.go(-1)" class="btn btn-xs btn-default">VOLTAR</a>
+    <br />
+
+</section>

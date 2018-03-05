@@ -1,0 +1,9 @@
+﻿/**Cor padrão da logo da DPGERJ **/
+.cke_bottom {
+    background: #00712E !important;
+}
+
+/**configuração necessária para que as tabs não saiam da modal*/
+a.cke_dialog_tab {
+    font-size: 11px !important;
+}

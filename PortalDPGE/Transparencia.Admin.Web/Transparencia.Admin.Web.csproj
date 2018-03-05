@@ -1,0 +1,396 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7FE724C5-2E82-46D5-B04C-36BE4E97C4B1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Transparencia.Admin.Web</RootNamespace>
+    <AssemblyName>Transparencia.Admin.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FileHelpers, Version=3.2.7.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.3.2.7\lib\net45\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Global.Dados, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Global.Dados\bin\Debug\Global.Dados.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ckeditor.custom.css" />
+    <Content Include="Content\ckeditor\adapters\jquery.js" />
+    <Content Include="Content\ckeditor\build-config.js" />
+    <Content Include="Content\ckeditor\ckeditor.js" />
+    <Content Include="Content\ckeditor\config.js" />
+    <Content Include="Content\ckeditor\contents.css" />
+    <Content Include="Content\ckeditor\lang\en.js" />
+    <Content Include="Content\ckeditor\lang\pt-br.js" />
+    <Content Include="Content\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Content\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Content\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Content\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Content\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Content\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Content\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\icons\bgcolor.png" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\icons\hidpi\bgcolor.png" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\icons\hidpi\textcolor.png" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\icons\textcolor.png" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\af.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ar.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\bg.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\bn.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\bs.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ca.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\cs.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\cy.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\da.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\de-ch.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\de.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\el.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\en-au.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\en-ca.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\en-gb.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\en.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\eo.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\es.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\et.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\eu.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\fa.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\fi.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\fo.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\fr-ca.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\fr.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\gl.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\gu.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\he.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\hi.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\hr.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\hu.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\id.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\is.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\it.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ja.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ka.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\km.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ko.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ku.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\lt.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\lv.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\mk.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\mn.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ms.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\nb.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\nl.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\no.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\pl.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\pt-br.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\pt.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ro.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ru.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\si.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\sk.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\sl.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\sq.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\sr-latn.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\sr.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\sv.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\th.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\tr.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\tt.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\ug.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\uk.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\vi.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\zh-cn.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\lang\zh.js" />
+    <Content Include="Content\ckeditor\plugins\colorbutton\plugin.js" />
+    <Content Include="Content\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Content\ckeditor\plugins\find\dialogs\find.js" />
+    <Content Include="Content\ckeditor\plugins\icons.png" />
+    <Content Include="Content\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="Content\ckeditor\plugins\image2\dialogs\image2.js" />
+    <Content Include="Content\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Content\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="Content\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Content\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Content\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Content\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Content\ckeditor\plugins\magicline\images\hidpi\icon-rtl.png" />
+    <Content Include="Content\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Content\ckeditor\plugins\magicline\images\icon-rtl.png" />
+    <Content Include="Content\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="Content\ckeditor\plugins\panelbutton\plugin.js" />
+    <Content Include="Content\ckeditor\plugins\pastebase64\plugin.js" />
+    <Content Include="Content\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Content\ckeditor\plugins\preview\preview.html" />
+    <Content Include="Content\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Content\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Content\ckeditor\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="Content\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Content\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Content\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Content\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Content\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Content\ckeditor\plugins\widget\images\handle.png" />
+    <Content Include="Content\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Content\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Content\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Content\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Content\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="Content\ckeditor\plugins\youtube\images\icon.png" />
+    <Content Include="Content\ckeditor\skins\office2013\dialog.css" />
+    <Content Include="Content\ckeditor\skins\office2013\editor.css" />
+    <Content Include="Content\ckeditor\skins\office2013\icons.png" />
+    <Content Include="Content\ckeditor\skins\office2013\icons_hidpi.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\arrow.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\close.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\hidpi\close.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\hidpi\lock-open.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\hidpi\lock.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\hidpi\refresh.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\lock-open.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\lock.png" />
+    <Content Include="Content\ckeditor\skins\office2013\images\refresh.png" />
+    <Content Include="Content\ckeditor\styles.js" />
+    <Content Include="Content\jquery.dataTables.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\jquery.datatables.traducao.ptbr.json" />
+    <Content Include="Content\ckeditor\CHANGES.md" />
+    <Content Include="Content\ckeditor\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\scayt\README.md" />
+    <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="Content\ckeditor\plugins\wsc\README.md" />
+    <Content Include="Content\ckeditor\README.md" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.charactercounter.js" />
+    <Content Include="Scripts\jquery.dataTables.bootstrap.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConteudoController.cs" />
+    <Compile Include="Controllers\GestaoPessoasController.cs" />
+    <Compile Include="Controllers\ImagemController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\CsvImportador.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\GestaoPessoas\ImportaCsvEstagiarios.cshtml" />
+    <Content Include="Views\GestaoPessoas\Index.cshtml" />
+    <Content Include="Views\GestaoPessoas\ImportaCsvResidentesJuridicos.cshtml" />
+    <Content Include="Views\Conteudo\Index.cshtml" />
+    <Content Include="Views\Conteudo\Cadastrar.cshtml" />
+    <Content Include="Views\Conteudo\Alterar.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Global.App\Global.App.csproj">
+      <Project>{b6900199-52cb-43f6-801a-08a70590d83c}</Project>
+      <Name>Global.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Global.Dom\Global.Dom.csproj">
+      <Project>{fb540cad-9ae2-4c25-983f-36b4a8a36330}</Project>
+      <Name>Global.Dom</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalDPGE.Dados\PortalDPGE.Dados.csproj">
+      <Project>{01474B37-1985-4914-9AF5-0552AF1DFF21}</Project>
+      <Name>PortalDPGE.Dados</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PortalDPGE.Dom\PortalDPGE.Dom.csproj">
+      <Project>{88EA7CBC-6784-4889-B116-5CF5F1BD8072}</Project>
+      <Name>PortalDPGE.Dom</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transparencia.Application\Transparencia.Application.csproj">
+      <Project>{b625be54-952e-4025-905a-df962568eec0}</Project>
+      <Name>Transparencia.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transparencia.Dom\Transparencia.Dom.csproj">
+      <Project>{4f577e14-9f2a-4dd8-9dad-39ba71917e22}</Project>
+      <Name>Transparencia.Dom</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transparencia.Infra.CrossCutting.IoC\Transparencia.Infra.CrossCutting.IoC.csproj">
+      <Project>{e9f0da5c-97f9-48f7-bad9-1cf4ed5902e6}</Project>
+      <Name>Transparencia.Infra.CrossCutting.IoC</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50535</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55286/Transparencia</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:55286/Transparencia</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

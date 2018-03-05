@@ -1,0 +1,75 @@
+﻿    <!-- acessibilidade -->
+<header>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+    <nav class="menu-secundario">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 pull-right col-xs-12">
+                    <div class="pull-right">
+                        
+                        <span><strong>@Html.ActionLink("Acessibilidade", "DescreveAcessibilidade", "Portal")</strong></span>
+                        <span id="aumentar-fonte"><a href=""><img src="~/content/img/texto-maior.png" alt="Aumentar"></a></span>
+                        <span id="diminuir-fonte"><a href=""><img src="~/content/img/texto-menor.png" alt="Diminuir"></a></span>
+                        <span id="contraste" onclick="trocar();"><a href="#"><img src="~/content/img/contraste.png" alt="Contraste"></a></span>                       
+
+                        <script type="text/javascript" charset="utf-8">
+                            var $z = jQuery.noConflict();
+                            var cont = window.sessionStorage.getItem('cont');
+                            if(cont == null)
+                                cont = 0;
+
+                            function trocar() {
+                                var obj = document.getElementById('content');
+                                if (obj.className == 'fundo2') {
+                                    obj.className = 'fundo1';
+                                    window.sessionStorage.setItem('style', 'fundo1');
+                                } else {
+                                    obj.className = 'fundo2';
+                                    window.sessionStorage.setItem('style', 'fundo2');
+                                }
+                            }
+                            $z(document).ready(function () {
+                                $z("#aumentar-fonte").click(function () {
+                                    var cont = window.sessionStorage.getItem('cont');
+                                    if (cont < 4) {
+                                        var size = $z("#content").css('font-size');
+
+                                        size = size.replace('px', '');
+                                        size = parseInt(size) + 2;
+                                        window.sessionStorage.setItem('fonte', size);
+                                        cont++;
+                                        window.sessionStorage.setItem('cont', cont);
+
+                                        $z("#content").animate({ 'font-size': size + 'px' });
+                                        return false;
+                                    }
+                                    else { return false; }
+                                });
+
+                                $z("#diminuir-fonte").click(function () {
+                                    var cont = window.sessionStorage.getItem('cont');
+                                    if (cont > -3) {
+                                        var size = $z("#content").css('font-size');
+
+                                        size = size.replace('px', '');
+                                        size = parseInt(size) - 2;
+                                        window.sessionStorage.setItem('fonte', size);
+                                        cont--;
+                                        window.sessionStorage.setItem('cont', cont);
+
+                                        $z("#content").animate({ 'font-size': size });
+                                        return false;
+                                    }
+                                    else { return false; }
+                                });
+                            });
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- fim acessibilidade -->

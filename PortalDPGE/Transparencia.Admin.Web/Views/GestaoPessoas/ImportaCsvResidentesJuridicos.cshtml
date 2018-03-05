@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Importação de CSV de Residentes Jurídicos";
+}
+
+<div class="page-header">
+    <h2><small>@ViewBag.Title</small></h2>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h4>Faça upload de novos arquivos:</h4>
+        @using (Html.BeginForm("ImportaCsvResidentesJuridicos", "GestaoPessoas", FormMethod.Post, new { enctype = "multipart/form-data", @id = "form-envia-arquivo" }))
+        {
+            <div class="form-container-notop">
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.Label("Arquivo", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="file" id="arquivoUpload" name="arquivoUpload" required="required" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dv-result">
+                    <div class="text-center align-center">
+                        <div class="alert alert-success  collapse " role="alert" id="alert-msg">
+                            <strong id="msg-text"></strong>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="loading" class="text-center collapse">
+                        <h6><i>Carregando...</i></h6>
+                        <img src="@Url.Content("~/Content/img/loading-ret-bar.gif")" alt="carregando" class="img img-responsive" style="margin: auto; display: block;" />
+                        <br />
+                    </div>
+                </div>
+
+
+                <div class="form-container-footer">
+                    <div class="pull-right">
+                        <button type="submit" id="btn-cadastrar" class="btn btn-success "> Cadastrar <span class="glyphicon glyphicon glyphicon-ok"></span></button>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

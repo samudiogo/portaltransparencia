@@ -1,0 +1,45 @@
+﻿@model PortalDPGE.Web.Models.RemuneracaoViewModel
+
+
+<table class="table table-striped table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.TipoVinculo)</td>
+            <td>@Html.DisplayFor(model => model.TipoVinculo)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Cargo)</td>
+            <td>@Html.DisplayFor(model => model.Cargo)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.RemuneracaoMensal)</td>
+            <td>@Html.DisplayFor(model => model.RemuneracaoMensal)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.RemuneracaoEventual)</td>
+            <td>@Html.DisplayFor(model => model.RemuneracaoEventual)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.TotalDescontos)</td>
+            <td>@Html.DisplayFor(model => model.TotalDescontos)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.LimiteRemuneratorio)</td>
+            <td>@Html.DisplayFor(model => model.LimiteRemuneratorio)</td>
+        </tr>
+
+    </tbody>
+    <tfoot>
+        <tr class="success">
+            <td><h4>@Html.DisplayNameFor(model => model.TotalLiquido)</h4></td>
+            <td><h4>@Html.DisplayFor(model => model.TotalLiquido)</h4></td>
+        </tr>
+    </tfoot>
+</table>
+
